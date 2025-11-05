@@ -416,7 +416,7 @@
               </div>
               <div class="mt-1 flex items-center justify-between border-t border-white/20 pt-3">
                 <span class="text-[11px] text-slate-300">
-                  Approx Initial Website Investment (excludes monthly)
+                  Approx Year-1 Website Investment (build + 10 months)
                 </span>
                 <span id="approxYearOne" class="font-display text-xl text-emerald-300">$0</span>
               </div>
@@ -632,17 +632,18 @@
         const addonsOne = selectedAddons.reduce((sum, a) => sum + a.oneTime, 0);
         const addonsMonth = selectedAddons.reduce((sum, a) => sum + a.monthly, 0);
 
-        const totalOne = coreOne + addonsOne + addonsMonth;
+        // One-time and monthly subtotals
+        const totalOne = coreOne + addonsOne;
         const totalMonth = coreMonth + addonsMonth;
 
-        // Initial website investment: ONLY one-time costs (build + one-time services)
-        const initialInvestment = totalOne;
+        // Year-1 total: initial one-time + 10 paid months (first 60 days free)
+        const yearOneTotal = totalOne + totalMonth * 10;
 
         if (coreOneTimeEl) coreOneTimeEl.textContent = currency(coreOne);
         if (coreMonthlyEl) coreMonthlyEl.textContent = currency(coreMonth);
         if (totalOneTimeEl) totalOneTimeEl.textContent = currency(totalOne);
         if (totalMonthlyEl) totalMonthlyEl.textContent = currency(totalMonth);
-        if (approxYearOneEl) approxYearOneEl.textContent = currency(initialInvestment);
+        if (approxYearOneEl) approxYearOneEl.textContent = currency(yearOneTotal);
 
         if (summaryClientEl) summaryClientEl.textContent = clientNameInput.value || 'Not specified';
         if (summaryProjectEl) summaryProjectEl.textContent = projectNameInput.value || 'Not specified';
@@ -710,7 +711,7 @@
         });
       }
 
-      // Initial compute so it's not all zeros on load
+      // Initial compute
       updateCalculator();
     });
   </script>
