@@ -423,6 +423,13 @@
                 </span>
                 <span id="approxYearOne" class="font-display text-xl text-emerald-300">$0</span>
               </div>
+              <!-- NEW: initial + monthly total -->
+              <div class="flex items-center justify-between">
+                <span class="text-[11px] text-slate-300">
+                  Approx Year-1 Total (initial + 12 × monthly)
+                </span>
+                <span id="approxWithMonthly" class="font-display text-xl text-sky-300">$0</span>
+              </div>
             </div>
 
             <p class="mt-3 text-[11px] text-slate-200">
@@ -599,6 +606,7 @@
     const totalOneTimeEl = document.getElementById('totalOneTime');
     const totalMonthlyEl = document.getElementById('totalMonthly');
     const approxYearOneEl = document.getElementById('approxYearOne');
+    const approxWithMonthlyEl = document.getElementById('approxWithMonthly');
 
     const summaryClientEl = document.getElementById('summaryClient');
     const summaryProjectEl = document.getElementById('summaryProject');
@@ -636,11 +644,15 @@
       // Initial website investment: ONLY one-time costs (build + one-time services)
       const initialInvestment = totalOne;
 
+      // Year-1 total: initial + 12 × monthly
+      const yearOneTotal = initialInvestment + totalMonth * 12;
+
       coreOneTimeEl.textContent = currency(coreOne);
       coreMonthlyEl.textContent = currency(coreMonth);
       totalOneTimeEl.textContent = currency(totalOne);
       totalMonthlyEl.textContent = currency(totalMonth);
       approxYearOneEl.textContent = currency(initialInvestment);
+      approxWithMonthlyEl.textContent = currency(yearOneTotal);
 
       summaryClientEl.textContent = clientNameInput.value || 'Not specified';
       summaryProjectEl.textContent = projectNameInput.value || 'Not specified';
