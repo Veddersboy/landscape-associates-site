@@ -1,24 +1,16 @@
-Got you — here’s your full file, exactly the same except the **hero image src** is now replaced with your garden/patio image reference (`modern-garden-hero.jpg`).
-
-Just put that image file in the **same folder** as this HTML file.
-
-```html
 <!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Landscape Associates - Animated Concept</title>
-    <!-- Tailwind CSS CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Google Fonts - Archivo Black (Headings) & Inter (Body) -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <!-- Tailwind CSS CDN --><script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts - Archivo Black (Headings) & Inter (Body) --><link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Inter:wght@300;400;500;600;7Methods:&display=swap" rel="stylesheet">
-    <!-- Feather Icons -->
-    <script src="https://unpkg.com/feather-icons"></script>
-    <!-- AOS (Animate on Scroll) Library -->
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Inter:wght@300;400;500;600;7Methods:
+&display=swap" rel="stylesheet">
+    <!-- Feather Icons --><script src="https://unpkg.com/feather-icons"></script>
+    <!-- AOS (Animate on Scroll) Library --><link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 
     <script>
@@ -180,16 +172,13 @@ Just put that image file in the **same folder** as this HTML file.
 
     <!-- 
       HEADER / NAVIGATION 
-    -->
-    <header id="main-header" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300">
+    --><header id="main-header" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300">
         <nav class="container mx-auto max-w-7xl px-6 py-6 flex justify-between items-center">
-            <!-- Logo -->
-            <a href="#" class="text-2xl font-bold tracking-tight text-brand-text" id="logo-text">
+            <!-- Logo --><a href="#" class="text-2xl font-bold tracking-tight text-brand-text" id="logo-text">
                 Landscape Associates
             </a>
 
-            <!-- Desktop Nav -->
-            <div class="hidden md:flex items-center space-x-8">
+            <!-- Desktop Nav --><div class="hidden md:flex items-center space-x-8">
                 <a href="#services" class="text-sm font-medium text-brand-text hover:text-brand-accent transition-colors" id="nav-link-1">Services</a>
                 <a href="#portfolio" class="text-sm font-medium text-brand-text hover:text-brand-accent transition-colors" id="nav-link-2">Portfolio</a>
                 <a href="#about" class="text-sm font-medium text-brand-text hover:text-brand-accent transition-colors" id="nav-link-3">About Us</a>
@@ -199,16 +188,14 @@ Just put that image file in the **same folder** as this HTML file.
                 </a>
             </div>
 
-            <!-- Mobile Menu Button -->
-            <div class="md:hidden">
+            <!-- Mobile Menu Button --><div class="md:hidden">
                 <button id="mobile-menu-button" class="focus:outline-none text-brand-text">
                     <i data-feather="menu" class="h-6 w-6"></i>
                 </button>
             </div>
         </nav>
 
-        <!-- Mobile Menu (Hidden by default) -->
-        <div id="mobile-menu" class="hidden md:hidden bg-white shadow-xl">
+        <!-- Mobile Menu (Hidden by default) --><div id="mobile-menu" class="hidden md:hidden bg-white shadow-xl">
             <a href="#services" class="block px-6 py-3 text-sm font-medium text-brand-text hover:bg-gray-100">Services</a>
             <a href="#portfolio" class="block px-6 py-3 text-sm font-medium text-brand-text hover:bg-gray-100">Portfolio</a>
             <a href="#about" class="block px-6 py-3 text-sm font-medium text-brand-text hover:bg-gray-100">About Us</a>
@@ -222,11 +209,9 @@ Just put that image file in the **same folder** as this HTML file.
     <main>
         <!-- 
           HERO SECTION (RE-IMAGINED)
-        -->
-        <section class="min-h-[700px] md:min-h-screen flex flex-col justify-center pt-32 pb-16 relative overflow-hidden">
+        --><section class="min-h-[700px] md:min-h-screen flex flex-col justify-center pt-32 pb-16 relative overflow-hidden">
             <div class="container mx-auto max-w-7xl px-6 relative z-10">
-                <!-- Stacked, bold text -->
-                <div class="text-center md:text-left">
+                <!-- Stacked, bold text --><div class="text-center md:text-left">
                     <h1 class="text-7xl sm:text-8xl md:text-9xl font-extrabold tracking-tighter text-brand-text -mb-2 md:-mb-4"
                         data-aos="fade-up" data-aos-duration="800" data-aos-delay="100">
                         DESIGN.
@@ -251,11 +236,9 @@ Just put that image file in the **same folder** as this HTML file.
                 </a>
             </div>
 
-            <!-- Arched Image Container -->
-            <div class="absolute top-0 right-0 h-full w-full md:w-3/5 z-0" data-aos="fade-in" data-aos-duration="1200">
+            <!-- Arched Image Container --><div class="absolute top-0 right-0 h-full w-full md:w-3/5 z-0" data-aos="fade-in" data-aos-duration="1200">
                 <div class="hero-image-clip h-full w-full">
-                    <!-- UPDATED IMAGE HERE -->
-                    <img src="modern-garden-hero.jpg" 
+                    <img src="https://images.unsplash.com/photo-1563220760-b6f9e200e008?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" 
                          alt="Modern patio with minimalist design and fire pit" 
                          class="h-full w-full object-cover"
                          onerror="this.src='https://placehold.co/1200x1000/EEE/333?text=Modern+Patio'">
@@ -265,8 +248,7 @@ Just put that image file in the **same folder** as this HTML file.
 
         <!-- 
           SERVICES SECTION 
-        -->
-        <section id="services" class="py-24 bg-white/50">
+        --><section id="services" class="py-24 bg-white/50">
             <div class="container mx-auto max-w-7xl px-6">
                 <div class="text-center mb-16" data-aos="fade-up">
                     <span class="text-brand-accent font-semibold uppercase tracking-wider">Our Expertise</span>
@@ -274,8 +256,7 @@ Just put that image file in the **same folder** as this HTML file.
                 </div>
 
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
-                    <!-- Service Card 1 -->
-                    <div class="bg-white rounded-xl shadow-lg overflow-hidden transition-all duration-300 hover:shadow-2xl transform hover:-translate-y-2" data-aos="fade-up" data-aos-delay="100">
+                    <!-- Service Card 1 --><div class="bg-white rounded-xl shadow-lg overflow-hidden transition-all duration-300 hover:shadow-2xl transform hover:-translate-y-2" data-aos="fade-up" data-aos-delay="100">
                         <img src="https://images.unsplash.com/photo-1588679614452-891804aff9ad?q=80&w=1974&auto=format&fit=crop" alt="Modern backyard landscape design" class="w-full h-56 object-cover" onerror="this.src='https://placehold.co/800x600/669966/FFF?text=Landscape+Design'">
                         <div class="p-8">
                             <h3 class="text-2xl font-semibold mb-3">Landscape Design</h3>
@@ -283,8 +264,7 @@ Just put that image file in the **same folder** as this HTML file.
                             <a href="#" class="font-medium text-brand-accent hover:text-orange-500 transition-colors">Learn More &rarr;</a>
                         </div>
                     </div>
-                    <!-- Service Card 2 -->
-                    <div class="bg-white rounded-xl shadow-lg overflow-hidden transition-all duration-300 hover:shadow-2xl transform hover:-translate-y-2" data-aos="fade-up" data-aos-delay="200">
+                    <!-- Service Card 2 --><div class="bg-white rounded-xl shadow-lg overflow-hidden transition-all duration-300 hover:shadow-2xl transform hover:-translate-y-2" data-aos="fade-up" data-aos-delay="200">
                         <img src="https://images.unsplash.com/photo-1598379032541-4501255518ff?q=80&w=1964&auto=format&fit=crop" alt="Hardscaping and modern stone patio" class="w-full h-56 object-cover" onerror="this.src='https://placehold.co/800x600/999966/FFF?text=Hardscaping'">
                         <div class="p-8">
                             <h3 class="text-2xl font-semibold mb-3">Hardscape & Patios</h3>
@@ -292,8 +272,7 @@ Just put that image file in the **same folder** as this HTML file.
                             <a href="#" class="font-medium text-brand-accent hover:text-orange-500 transition-colors">Learn More &rarr;</a>
                         </div>
                     </div>
-                    <!-- Service Card 3 -->
-                    <div class="bg-white rounded-xl shadow-lg overflow-hidden transition-all duration-300 hover:shadow-2xl transform hover:-translate-y-2" data-aos="fade-up" data-aos-delay="300">
+                    <!-- Service Card 3 --><div class="bg-white rounded-xl shadow-lg overflow-hidden transition-all duration-300 hover:shadow-2xl transform hover:-translate-y-2" data-aos="fade-up" data-aos-delay="300">
                         <img src="https://images.unsplash.com/photo-1544983353-83c31896f60a?q=80&w=1974&auto=format&fit=crop" alt="Lush, manicured garden planting" class="w-full h-56 object-cover" onerror="this.src='https://placehold.co/800x600/666699/FFF?text=Planting+&+Maintenance'">
                         <div class="p-8">
                             <h3 class="text-2xl font-semibold mb-3">Planting & Maintenance</h3>
@@ -307,11 +286,9 @@ Just put that image file in the **same folder** as this HTML file.
 
         <!-- 
           NEW: MARQUEE SECTION
-        -->
-        <section class="py-12 bg-brand-text text-white overflow-hidden">
+        --><section class="py-12 bg-brand-text text-white overflow-hidden">
             <div class="flex animate-scroll-x">
-                <!-- Create two identical groups for seamless loop -->
-                <div class="flex items-center space-x-12 px-6 min-w-max">
+                <!-- Create two identical groups for seamless loop --><div class="flex items-center space-x-12 px-6 min-w-max">
                     <span class="text-3xl font-heading">LANDSCAPE DESIGN</span>
                     <span class="text-3xl text-brand-accent font-heading">•</span>
                     <span class="text-3xl font-heading">HARDSCAPE & PATIOS</span>
@@ -336,8 +313,7 @@ Just put that image file in the **same folder** as this HTML file.
 
         <!-- 
           ABOUT / WHY CHOOSE US SECTION
-        -->
-        <section id="about" class="py-24 bg-transparent overflow-hidden">
+        --><section id="about" class="py-24 bg-transparent overflow-hidden">
             <div class="container mx-auto max-w-7xl px-6 grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
                 <div data-aos="fade-right">
                     <img src="https://images.unsplash.com/photo-1523280302068-07464e2d874e?q=80&w=1974&auto=format&fit=crop" alt="Landscape Associates team working on a project" class="w-full h-auto rounded-xl shadow-lg object-cover" onerror="this.src='https://placehold.co/800x700/DDD/333?text=Our+Team+in+Action'">
@@ -371,8 +347,7 @@ Just put that image file in the **same folder** as this HTML file.
 
         <!-- 
           NEW: BEFORE/AFTER SLIDER
-        -->
-        <section id="transformation" class="py-24 bg-white/50">
+        --><section id="transformation" class="py-24 bg-white/50">
             <div class="container mx-auto max-w-7xl px-6">
                 <div class="text-center mb-16" data-aos="fade-up">
                     <span class="text-brand-accent font-semibold uppercase tracking-wider">Proven Results</span>
@@ -382,24 +357,20 @@ Just put that image file in the **same folder** as this HTML file.
 
                 <div class="max-w-5xl mx-auto" data-aos="fade-up">
                     <div class="ba-slider rounded-xl shadow-2xl" id="ba-slider-container">
-                        <!-- Before Image -->
-                        <div class="ba-image-before">
+                        <!-- Before Image --><div class="ba-image-before">
                             <img src="https://images.unsplash.com/photo-1549449339-01b73c4866f8?q=80&w=1964&auto=format&fit=crop" 
                                  alt="Messy backyard before landscaping"
                                  onerror="this.src='https://placehold.co/1200x800/8B4513/FFF?text=Before'">
                         </div>
-                        <!-- After Image (in resizable container) -->
-                        <div class="ba-image-after" id="ba-after-image">
+                        <!-- After Image (in resizable container) --><div class="ba-image-after" id="ba-after-image">
                             <img src="https://images.unsplash.com/photo-1562711037-05c2d3618152?q=80&w=1964&auto=format&fit=crop" 
                                  alt="Beautiful landscaped backyard"
                                  onerror="this.src='https://placehold.co/1200x800/556B2F/FFF?text=After'">
                         </div>
-                        <!-- Slider Handle -->
-                        <div class="ba-handle" id="ba-handle">
+                        <!-- Slider Handle --><div class="ba-handle" id="ba-handle">
                             <span class="ba-handle-arrows">||</span>
                         </div>
-                        <!-- Range Input -->
-                        <input type="range" min="0" max="100" value="50" class="ba-range" id="ba-range-slider" aria-label="Before/After Image Slider">
+                        <!-- Range Input --><input type="range" min="0" max="100" value="50" class="ba-range" id="ba-range-slider" aria-label="Before/After Image Slider">
                     </div>
                 </div>
             </div>
@@ -407,8 +378,7 @@ Just put that image file in the **same folder** as this HTML file.
 
         <!-- 
           PORTFOLIO HIGHLIGHT (Re-purposed to be the counter section)
-        -->
-        <section id="portfolio" class="py-24 bg-transparent">
+        --><section id="portfolio" class="py-24 bg-transparent">
             <div class="container mx-auto max-w-7xl px-6">
                 <div class="text-center mb-16" data-aos="fade-up">
                     <h2 class="text-4xl md:text-5xl font-bold tracking-tight">Our Impact by the Numbers</h2>
@@ -433,8 +403,7 @@ Just put that image file in the **same folder** as this HTML file.
 
         <!-- 
           PORTFOLIO HIGHLIGHT
-        -->
-        <section id="portfolio" class="py-24 bg-white/50">
+        --><section id="portfolio" class="py-24 bg-white/50">
             <div class="container mx-auto max-w-7xl px-6">
                 <div class="text-center mb-16" data-aos="fade-up">
                     <h2 class="text-4xl md:text-5xl font-bold tracking-tight">Our Recent Projects</h2>
@@ -442,8 +411,7 @@ Just put that image file in the **same folder** as this HTML file.
                 </div>
                 
                 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                    <!-- Portfolio Item -->
-                    <a href="#" class="group block rounded-xl shadow-lg overflow-hidden" data-aos="zoom-in" data-aos-delay="100">
+                    <!-- Portfolio Item --><a href="#" class="group block rounded-xl shadow-lg overflow-hidden" data-aos="zoom-in" data-aos-delay="100">
                         <div class="relative">
                             <img src="https://images.unsplash.com/photo-1562711037-05c2d3618152?q=80&w=1964&auto=format&fit=crop" alt="Napa Valley Estate" class="w-full h-72 object-cover portfolio-img" onerror="this.src='https://placehold.co/800x600/556B2F/FFF?text=Napa+Valley+Estate'">
                             <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-40 transition-all duration-300 flex items-end">
@@ -451,8 +419,7 @@ Just put that image file in the **same folder** as this HTML file.
                             </div>
                         </div>
                     </a>
-                    <!-- Portfolio Item -->
-                    <a href="#" class="group block rounded-xl shadow-lg overflow-hidden" data-aos="zoom-in" data-aos-delay="200">
+                    <!-- Portfolio Item --><a href="#" class="group block rounded-xl shadow-lg overflow-hidden" data-aos="zoom-in" data-aos-delay="200">
                         <div class="relative">
                             <img src="https://images.unsplash.com/photo-1617094250106-f1dec3161b3b?q=80&w=1974&auto=format&fit=crop" alt="Modern SF Rooftop Garden" class="w-full h-72 object-cover portfolio-img" onerror="this.src='https://placehold.co/800x600/8B4513/FFF?text=Modern+SF+Rooftop'">
                             <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-40 transition-all duration-300 flex items-end">
@@ -460,8 +427,7 @@ Just put that image file in the **same folder** as this HTML file.
                             </div>
                         </div>
                     </a>
-                    <!-- Portfolio Item -->
-                    <a href="#" class="group block rounded-xl shadow-lg overflow-hidden" data-aos="zoom-in" data-aos-delay="300">
+                    <!-- Portfolio Item --><a href="#" class="group block rounded-xl shadow-lg overflow-hidden" data-aos="zoom-in" data-aos-delay="300">
                         <div class="relative">
                             <img src="https://images.unsplash.com/photo-1571001839911-37d110f0b3e5?q=80&w=1974&auto=format&fit=crop" alt="Ojai Poolside Retreat" class="w-full h-72 object-cover portfolio-img" onerror="this.src='https://placehold.co/800x600/D2B48C/333?text=Ojai+Poolside+Retreat'">
                             <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-40 transition-all duration-300 flex items-end">
@@ -469,8 +435,7 @@ Just put that image file in the **same folder** as this HTML file.
                             </div>
                         </div>
                     </a>
-                    <!-- More items... -->
-                    <a href="#" class="group block rounded-xl shadow-lg overflow-hidden sm:hidden lg:block" data-aos="zoom-in" data-aos-delay="400">
+                    <!-- More items... --><a href="#" class="group block rounded-xl shadow-lg overflow-hidden sm:hidden lg:block" data-aos="zoom-in" data-aos-delay="400">
                         <div class="relative">
                             <img src="https://images.unsplash.com/photo-1551633509-abdf8b813b18?q=80&w=1974&auto=format&fit=crop" alt="Malibu Native Garden" class="w-full h-72 object-cover portfolio-img" onerror="this.src='https://placehold.co/800x600/BDB76B/333?text=Malibu+Native+Garden'">
                             <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-40 transition-all duration-300 flex items-end">
@@ -506,14 +471,12 @@ Just put that image file in the **same folder** as this HTML file.
 
         <!-- 
           TESTIMONIAL CAROUSEL SECTION
-        -->
-        <section class="py-24 bg-brand-accent text-white">
+        --><section class="py-24 bg-brand-accent text-white">
             <div class="container mx-auto max-w-4xl px-6 text-center" data-aos="fade-up">
                 <h2 class="text-4xl font-bold tracking-tight mb-8">What Our Clients Say</h2>
                 <div class="relative min-h-[250px]" id="testimonial-container">
                     
-                    <!-- Testimonial 1 -->
-                    <div class="testimonial-item active">
+                    <!-- Testimonial 1 --><div class="testimonial-item active">
                         <div class="text-3xl font-light italic leading-relaxed">
                             "Landscape Associates transformed our weed-filled backyard into a private oasis. Their attention to detail was impeccable, and the crew was professional and clean. We couldn't be happier."
                         </div>
@@ -522,8 +485,7 @@ Just put that image file in the **same folder** as this HTML file.
                         </p>
                     </div>
 
-                    <!-- Testimonial 2 -->
-                    <div class="testimonial-item">
+                    <!-- Testimonial 2 --><div class="testimonial-item">
                         <div class="text-3xl font-light italic leading-relaxed">
                             "The design process was a dream. They listened to our vision, added their own expert creativity, and delivered a 3D rendering that blew us away. The final product was even better."
                         </div>
@@ -532,8 +494,7 @@ Just put that image file in the **same folder** as this HTML file.
                         </p>
                     </div>
 
-                    <!-- Testimonial 3 -->
-                    <div class="testimonial-item">
+                    <!-- Testimonial 3 --><div class="testimonial-item">
                         <div class="text-3xl font-light italic leading-relaxed">
                             "Our new outdoor kitchen and patio are the envy of the neighborhood. It's truly an extension of our home. Worth every penny for the quality of life (and property value) it added."
                         </div>
@@ -548,8 +509,7 @@ Just put that image file in the **same folder** as this HTML file.
 
         <!-- 
           LOCATIONS SECTION
-        -->
-        <section id="locations" class="py-24 bg-transparent">
+        --><section id="locations" class="py-24 bg-transparent">
             <div class="container mx-auto max-w-7xl px-6" data-aos="fade-up">
                 <div class="text-center mb-16">
                     <h2 class="text-4xl md:text-5xl font-bold tracking-tight">We Serve You Where You Are</h2>
@@ -578,8 +538,7 @@ Just put that image file in the **same folder** as this HTML file.
 
         <!-- 
           FINAL CTA SECTION
-        -->
-        <section id="contact" class="py-24 bg-white/50 border-t border-gray-200 overflow-hidden">
+        --><section id="contact" class="py-24 bg-white/50 border-t border-gray-200 overflow-hidden">
             <div class="container mx-auto max-w-5xl px-6">
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-16">
                     <div class="pr-8" data-aos="fade-right">
@@ -601,8 +560,7 @@ Just put that image file in the **same folder** as this HTML file.
                         </div>
                     </div>
 
-                    <!-- Simple Contact Form -->
-                    <div class="bg-white p-8 rounded-xl shadow-lg" data-aos="fade-left">
+                    <!-- Simple Contact Form --><div class="bg-white p-8 rounded-xl shadow-lg" data-aos="fade-left">
                         <form action="#" method="POST" class="space-y-5">
                             <div>
                                 <label for="name" class="block text-sm font-medium text-gray-700">Full Name</label>
@@ -630,17 +588,14 @@ Just put that image file in the **same folder** as this HTML file.
 
     <!-- 
       FOOTER 
-    -->
-    <footer class="bg-brand-text text-gray-400 py-16">
+    --><footer class="bg-brand-text text-gray-400 py-16">
         <div class="container mx-auto max-w-7xl px-6">
             <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
-                <!-- Logo & About -->
-                <div>
+                <!-- Logo & About --><div>
                     <h3 class="text-2xl font-bold text-white mb-4">Landscape Associates</h3>
                     <p class="text-sm leading-relaxed">Creating California's most breathtaking outdoor living spaces since 2001.</p>
                 </div>
-                <!-- Quick Links -->
-                <div>
+                <!-- Quick Links --><div>
                     <h4 class="text-lg font-semibold text-white mb-4">Quick Links</h4>
                     <ul class="space-y-2 text-sm">
                         <li><a href="#services" class="hover:text-white transition-colors">Services</a></li>
@@ -649,8 +604,7 @@ Just put that image file in the **same folder** as this HTML file.
                         <li><a href="#contact" class="hover:text-white transition-colors">Contact</a></li>
                     </ul>
                 </div>
-                <!-- Contact Info -->
-                <div>
+                <!-- Contact Info --><div>
                     <h4 class="text-lg font-semibold text-white mb-4">Contact Us</h4>
                     <ul class="space-y-2 text-sm">
                         <li>(800) 555-1234</li>
@@ -658,8 +612,7 @@ Just put that image file in the **same folder** as this HTML file.
                         <li>Bay Area | Los Angeles | Napa</li>
                     </ul>
                 </div>
-                <!-- Social Media -->
-                <div>
+                <!-- Social Media --><div>
                     <h4 class="text-lg font-semibold text-white mb-4">Follow Us</h4>
                     <div class="flex space-x-4">
                         <a href="#" class="hover:text-white transition-colors"><i data-feather="facebook" class="h-6 w-6"></i></a>
@@ -823,4 +776,3 @@ Just put that image file in the **same folder** as this HTML file.
     </script>
 </body>
 </html>
-```
