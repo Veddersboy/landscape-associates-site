@@ -1,1 +1,1405 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Landscape Associates | Professional Landscaping Services</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta
+    name="description"
+    content="Landscape Associates provides professional landscape design, installation, and maintenance for residential and commercial properties."
+  />
 
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600&family=Inter:wght@300;400;500;600&display=swap"
+    rel="stylesheet"
+  />
+
+  <style>
+    :root {
+      --bg: #f5f6f7;
+      --bg-alt: #ffffff;
+      --accent: #1f7a4d;
+      --accent-soft: rgba(31, 122, 77, 0.08);
+      --accent-dark: #145233;
+      --text-main: #111827;
+      --text-muted: #6b7280;
+      --border-subtle: #e5e7eb;
+      --radius-lg: 18px;
+      --radius-xl: 28px;
+      --shadow-soft: 0 18px 45px rgba(15, 23, 42, 0.12);
+      --shadow-subtle: 0 10px 25px rgba(15, 23, 42, 0.06);
+      --max-width: 1120px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont,
+        "Segoe UI", sans-serif;
+      background: radial-gradient(circle at top left, #e0f2f1 0, #f5f6f7 52%, #e5f0ea 100%);
+      color: var(--text-main);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    .page {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .shell {
+      width: 100%;
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 0 1.25rem;
+    }
+
+    /* Header / Nav */
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      backdrop-filter: blur(18px);
+      background: linear-gradient(
+        to bottom,
+        rgba(245, 246, 247, 0.92),
+        rgba(245, 246, 247, 0.7),
+        transparent
+      );
+      border-bottom: 1px solid rgba(229, 231, 235, 0.4);
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.9rem 0.2rem 0.9rem;
+    }
+
+    .nav-left {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .logo-mark {
+      width: 34px;
+      height: 34px;
+      border-radius: 999px;
+      background: radial-gradient(circle at 30% 20%, #bbf7d0, #16a34a);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 10px 20px rgba(22, 163, 74, 0.25);
+    }
+
+    .logo-mark span {
+      color: white;
+      font-weight: 600;
+      font-size: 18px;
+    }
+
+    .logo-text {
+      display: flex;
+      flex-direction: column;
+      gap: 0.1rem;
+    }
+
+    .logo-text strong {
+      font-family: "Playfair Display", serif;
+      font-size: 1.05rem;
+      letter-spacing: 0.03em;
+    }
+
+    .logo-text small {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 1.75rem;
+      font-size: 0.9rem;
+      color: var(--text-muted);
+    }
+
+    .nav-links a {
+      position: relative;
+      padding-bottom: 0.1rem;
+    }
+
+    .nav-links a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      height: 2px;
+      border-radius: 999px;
+      background: linear-gradient(to right, #16a34a, #059669);
+      transform-origin: center;
+      transform: scaleX(0);
+      transition: transform 0.2s ease-out;
+    }
+
+    .nav-links a:hover::after {
+      transform: scaleX(1);
+    }
+
+    .nav-cta {
+      display: none;
+    }
+
+    .nav-cta button {
+      border: none;
+      cursor: pointer;
+      padding: 0.55rem 1.1rem;
+      border-radius: 999px;
+      background: var(--accent);
+      color: white;
+      font-size: 0.85rem;
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      box-shadow: 0 12px 24px rgba(21, 128, 61, 0.35);
+    }
+
+    .nav-cta button span.icon {
+      font-size: 1rem;
+    }
+
+    /* Hero */
+    .hero-wrap {
+      padding: 2.75rem 0 3.25rem;
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr);
+      gap: 2.25rem;
+      align-items: center;
+    }
+
+    .hero-copy-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.18rem 0.5rem;
+      border-radius: 999px;
+      background: rgba(22, 163, 74, 0.06);
+      border: 1px solid rgba(22, 163, 74, 0.14);
+      font-size: 0.75rem;
+      color: var(--accent-dark);
+      margin-bottom: 0.9rem;
+    }
+
+    .hero-copy-eyebrow span.dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 999px;
+      background: #22c55e;
+      box-shadow: 0 0 0 6px rgba(34, 197, 94, 0.25);
+    }
+
+    .hero h1 {
+      font-family: "Playfair Display", serif;
+      font-size: clamp(2.35rem, 4vw, 3rem);
+      line-height: 1.1;
+      letter-spacing: 0.01em;
+      margin: 0 0 0.75rem;
+      color: #0b1120;
+    }
+
+    .hero h1 span {
+      color: var(--accent-dark);
+    }
+
+    .hero-sub {
+      font-size: 0.98rem;
+      max-width: 32rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+      margin-bottom: 1.4rem;
+    }
+
+    .hero-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.75rem;
+      align-items: center;
+      margin-bottom: 1.8rem;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      align-items: center;
+    }
+
+    .btn-primary {
+      border-radius: 999px;
+      border: none;
+      padding: 0.8rem 1.6rem;
+      background: linear-gradient(135deg, #15803d, #16a34a);
+      color: white;
+      font-size: 0.95rem;
+      font-weight: 500;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.55rem;
+      box-shadow: 0 18px 40px rgba(21, 128, 61, 0.4);
+    }
+
+    .btn-primary span.icon {
+      font-size: 1.1rem;
+    }
+
+    .btn-ghost {
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.5);
+      padding: 0.8rem 1.25rem;
+      background: rgba(255, 255, 255, 0.5);
+      color: var(--text-main);
+      font-size: 0.9rem;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.55rem;
+    }
+
+    .hero-note {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .hero-note span.pill {
+      padding: 0.2rem 0.6rem;
+      border-radius: 999px;
+      background: rgba(15, 118, 110, 0.08);
+      color: #0f766e;
+      font-size: 0.7rem;
+      font-weight: 500;
+    }
+
+    .hero-visual {
+      position: relative;
+      border-radius: var(--radius-xl);
+      overflow: hidden;
+      box-shadow: var(--shadow-soft);
+      background: radial-gradient(circle at top left, #4ade80 0, #14532d 45%, #052e16 100%);
+      min-height: 260px;
+      isolation: isolate;
+    }
+
+    .hero-visual-main {
+      position: absolute;
+      inset: 0;
+      background-image: linear-gradient(
+          135deg,
+          rgba(15, 23, 42, 0.35),
+          rgba(21, 128, 61, 0.05)
+        ),
+        url("https://images.pexels.com/photos/15010043/pexels-photo-15010043.jpeg?auto=compress&cs=tinysrgb&w=1600");
+      background-size: cover;
+      background-position: center;
+      filter: saturate(1.05) contrast(1.02);
+    }
+
+    .hero-visual-overlay {
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at top right, transparent 0, transparent 45%, rgba(15, 23, 42, 0.72) 100%);
+      mix-blend-mode: multiply;
+    }
+
+    .hero-visual-card {
+      position: absolute;
+      left: 1.4rem;
+      bottom: 1.4rem;
+      right: 1.4rem;
+      padding: 0.85rem 0.95rem;
+      border-radius: 18px;
+      background: rgba(15, 23, 42, 0.93);
+      color: #e5e7eb;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.9rem;
+      border: 1px solid rgba(148, 163, 184, 0.28);
+      box-shadow: var(--shadow-subtle);
+    }
+
+    .hero-visual-card-main {
+      display: flex;
+      flex-direction: column;
+      gap: 0.15rem;
+      font-size: 0.78rem;
+    }
+
+    .hero-visual-card-main strong {
+      font-size: 0.9rem;
+      color: #f9fafb;
+    }
+
+    .hero-visual-card-pill {
+      font-size: 0.7rem;
+      color: #a3e635;
+    }
+
+    .hero-visual-card-metrics {
+      display: flex;
+      flex-direction: column;
+      gap: 0.15rem;
+      text-align: right;
+      font-size: 0.73rem;
+    }
+
+    .hero-visual-card-metrics span.label {
+      color: #9ca3af;
+    }
+
+    .hero-visual-card-metrics span.value {
+      color: #bbf7d0;
+      font-weight: 500;
+      font-size: 0.85rem;
+    }
+
+    /* Sections */
+    section {
+      padding: 2.2rem 0;
+    }
+
+    section + section {
+      border-top: 1px solid rgba(209, 213, 219, 0.7);
+    }
+
+    .section-header {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 1.5rem;
+      margin-bottom: 1.6rem;
+    }
+
+    .section-header h2 {
+      font-size: 1.2rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #4b5563;
+      margin: 0 0 0.15rem;
+    }
+
+    .section-header h3 {
+      font-family: "Playfair Display", serif;
+      font-size: 1.6rem;
+      margin: 0.1rem 0 0;
+    }
+
+    .section-header p {
+      margin: 0.25rem 0 0;
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      max-width: 24rem;
+    }
+
+    /* Services */
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 1.25rem;
+    }
+
+    .service-card {
+      background: var(--bg-alt);
+      border-radius: var(--radius-lg);
+      padding: 1.1rem 1.1rem 1.15rem;
+      border: 1px solid var(--border-subtle);
+      box-shadow: var(--shadow-subtle);
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+    }
+
+    .service-icon {
+      width: 32px;
+      height: 32px;
+      border-radius: 12px;
+      background: var(--accent-soft);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      margin-bottom: 0.2rem;
+    }
+
+    .service-card h4 {
+      margin: 0;
+      font-size: 0.98rem;
+      font-weight: 600;
+    }
+
+    .service-card p {
+      margin: 0;
+      font-size: 0.86rem;
+      color: var(--text-muted);
+      line-height: 1.55;
+    }
+
+    .service-tagline {
+      font-size: 0.75rem;
+      color: #16a34a;
+      font-weight: 500;
+      margin-top: 0.3rem;
+    }
+
+    /* Projects / Gallery */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: 1.4fr 1fr;
+      gap: 1.25rem;
+    }
+
+    .project-main {
+      border-radius: var(--radius-xl);
+      overflow: hidden;
+      position: relative;
+      min-height: 260px;
+      background-image: linear-gradient(
+          135deg,
+          rgba(15, 23, 42, 0.4),
+          rgba(15, 23, 42, 0.1)
+        ),
+        url("https://images.pexels.com/photos/14021511/pexels-photo-14021511.jpeg?auto=compress&cs=tinysrgb&w=1600");
+      background-size: cover;
+      background-position: center;
+      box-shadow: var(--shadow-soft);
+    }
+
+    .project-main-caption {
+      position: absolute;
+      left: 1.5rem;
+      bottom: 1.5rem;
+      right: 1.5rem;
+      padding: 0.8rem 1rem;
+      border-radius: 16px;
+      background: rgba(15, 23, 42, 0.9);
+      color: #e5e7eb;
+      font-size: 0.85rem;
+      display: flex;
+      justify-content: space-between;
+      gap: 0.75rem;
+    }
+
+    .project-main-caption strong {
+      display: block;
+      margin-bottom: 0.15rem;
+      color: #f9fafb;
+    }
+
+    .project-main-caption span.badge {
+      padding: 0.18rem 0.6rem;
+      border-radius: 999px;
+      background: rgba(22, 163, 74, 0.21);
+      color: #bbf7d0;
+      font-size: 0.7rem;
+      font-weight: 500;
+      white-space: nowrap;
+    }
+
+    .projects-side {
+      display: flex;
+      flex-direction: column;
+      gap: 0.9rem;
+    }
+
+    .project-card {
+      border-radius: var(--radius-lg);
+      background: var(--bg-alt);
+      border: 1px solid var(--border-subtle);
+      padding: 0.9rem 1rem;
+      display: grid;
+      grid-template-columns: 1.2fr 1.1fr;
+      gap: 0.75rem;
+      align-items: center;
+      box-shadow: var(--shadow-subtle);
+      font-size: 0.83rem;
+    }
+
+    .project-card strong {
+      display: block;
+      margin-bottom: 0.2rem;
+      font-size: 0.9rem;
+    }
+
+    .project-card span.meta {
+      color: var(--text-muted);
+      font-size: 0.8rem;
+    }
+
+    .project-card-meter {
+      display: flex;
+      flex-direction: column;
+      gap: 0.3rem;
+    }
+
+    .meter-label {
+      display: flex;
+      justify-content: space-between;
+      gap: 0.5rem;
+      font-size: 0.75rem;
+      color: var(--text-muted);
+    }
+
+    .meter-bar {
+      position: relative;
+      border-radius: 999px;
+      background: #e5e7eb;
+      height: 6px;
+      overflow: hidden;
+    }
+
+    .meter-fill {
+      position: absolute;
+      inset: 0;
+      width: var(--value, 75%);
+      border-radius: inherit;
+      background: linear-gradient(90deg, #16a34a, #22c55e);
+    }
+
+    /* Testimonials / About */
+    .two-column {
+      display: grid;
+      grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr);
+      gap: 1.5rem;
+      align-items: start;
+    }
+
+    .testimonials {
+      display: grid;
+      gap: 0.9rem;
+    }
+
+    .testimonial-card {
+      background: var(--bg-alt);
+      border-radius: var(--radius-lg);
+      padding: 1rem 1rem 0.95rem;
+      border: 1px solid var(--border-subtle);
+      box-shadow: var(--shadow-subtle);
+      font-size: 0.85rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+    }
+
+    .testimonial-text {
+      line-height: 1.6;
+      color: var(--text-main);
+    }
+
+    .testimonial-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 0.75rem;
+      font-size: 0.78rem;
+      color: var(--text-muted);
+    }
+
+    .testimonial-meta strong {
+      font-size: 0.85rem;
+      color: var(--text-main);
+    }
+
+    .stars {
+      color: #16a34a;
+      font-size: 0.8rem;
+      letter-spacing: 0.03em;
+    }
+
+    .about {
+      background: var(--bg-alt);
+      border-radius: var(--radius-xl);
+      padding: 1.4rem 1.4rem 1.2rem;
+      border: 1px solid var(--border-subtle);
+      box-shadow: var(--shadow-subtle);
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      line-height: 1.7;
+    }
+
+    .about h4 {
+      margin: 0 0 0.4rem;
+      font-size: 1rem;
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 0.9rem;
+      margin-top: 0.95rem;
+      font-size: 0.8rem;
+    }
+
+    .about-stat label {
+      display: block;
+      font-size: 0.72rem;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+      color: #9ca3af;
+      margin-bottom: 0.12rem;
+    }
+
+    .about-stat strong {
+      font-size: 1rem;
+    }
+
+    /* Service areas & Contact */
+    .grid-contact {
+      display: grid;
+      grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+      gap: 1.6rem;
+      align-items: start;
+    }
+
+    .areas {
+      background: var(--bg-alt);
+      border-radius: var(--radius-lg);
+      padding: 1.1rem 1.25rem;
+      border: 1px solid var(--border-subtle);
+      box-shadow: var(--shadow-subtle);
+      font-size: 0.88rem;
+    }
+
+    .areas h4 {
+      margin: 0 0 0.5rem;
+      font-size: 0.98rem;
+    }
+
+    .areas p {
+      margin: 0 0 0.7rem;
+      font-size: 0.83rem;
+      color: var(--text-muted);
+    }
+
+    .areas-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+    }
+
+    .areas-list span {
+      padding: 0.28rem 0.7rem;
+      border-radius: 999px;
+      background: rgba(31, 122, 77, 0.06);
+      border: 1px dashed rgba(31, 122, 77, 0.28);
+      font-size: 0.78rem;
+      color: var(--accent-dark);
+    }
+
+    .contact-card {
+      background: #0f172a;
+      color: #e5e7eb;
+      border-radius: var(--radius-xl);
+      padding: 1.5rem 1.5rem 1.35rem;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+      gap: 1rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .contact-card::before {
+      content: "";
+      position: absolute;
+      inset: -20%;
+      background: radial-gradient(circle at top right, rgba(34, 197, 94, 0.4), transparent 55%);
+      opacity: 0.75;
+      pointer-events: none;
+    }
+
+    .contact-heading {
+      position: relative;
+      z-index: 1;
+    }
+
+    .contact-heading h4 {
+      margin: 0 0 0.4rem;
+      font-size: 1.1rem;
+    }
+
+    .contact-heading p {
+      margin: 0;
+      font-size: 0.86rem;
+      color: #cbd5f5;
+      max-width: 22rem;
+    }
+
+    .contact-meta-mini {
+      font-size: 0.78rem;
+      color: #a5b4fc;
+      margin-top: 0.45rem;
+    }
+
+    form {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 0.8rem 0.75rem;
+      font-size: 0.85rem;
+    }
+
+    .form-field {
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+    }
+
+    .form-field.full {
+      grid-column: 1 / -1;
+    }
+
+    label {
+      font-size: 0.78rem;
+      color: #cbd5f5;
+    }
+
+    input,
+    select,
+    textarea {
+      border-radius: 12px;
+      border: 1px solid rgba(148, 163, 184, 0.6);
+      padding: 0.55rem 0.7rem;
+      font-family: inherit;
+      font-size: 0.85rem;
+      background: rgba(15, 23, 42, 0.9);
+      color: #e5e7eb;
+      outline: none;
+      transition: border-color 0.15s ease, box-shadow 0.15s ease,
+        background 0.15s ease;
+    }
+
+    input::placeholder,
+    textarea::placeholder {
+      color: #64748b;
+    }
+
+    textarea {
+      min-height: 72px;
+      resize: vertical;
+    }
+
+    input:focus,
+    select:focus,
+    textarea:focus {
+      border-color: #22c55e;
+      box-shadow: 0 0 0 1px rgba(34, 197, 94, 0.3);
+      background: rgba(15, 23, 42, 0.98);
+    }
+
+    .contact-actions {
+      grid-column: 1 / -1;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.75rem;
+      margin-top: 0.2rem;
+    }
+
+    .contact-actions button {
+      border-radius: 999px;
+      border: none;
+      padding: 0.75rem 1.55rem;
+      background: linear-gradient(135deg, #22c55e, #16a34a);
+      color: #022c22;
+      font-weight: 600;
+      font-size: 0.9rem;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      box-shadow: 0 16px 35px rgba(22, 163, 74, 0.55);
+    }
+
+    .contact-actions small {
+      font-size: 0.75rem;
+      color: #a5b4fc;
+    }
+
+    /* Footer */
+    .site-footer {
+      border-top: 1px solid rgba(209, 213, 219, 0.7);
+      padding: 1.4rem 0 1.6rem;
+    }
+
+    .footer-inner {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    .footer-contact {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.1rem;
+      align-items: center;
+    }
+
+    .footer-contact a {
+      color: var(--text-muted);
+    }
+
+    .footer-contact span.label {
+      color: #9ca3af;
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.09em;
+    }
+
+    /* Responsive */
+    @media (max-width: 960px) {
+      .hero {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .hero-visual {
+        order: -1;
+      }
+
+      .projects-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .grid-contact {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .two-column {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .services-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .nav-cta {
+        display: none;
+      }
+    }
+
+    @media (max-width: 720px) {
+      .nav-links {
+        display: none;
+      }
+
+      .nav-cta {
+        display: block;
+      }
+
+      .hero-wrap {
+        padding-top: 2rem;
+      }
+
+      section {
+        padding: 1.9rem 0;
+      }
+
+      .section-header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .services-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .projects-grid,
+      .grid-contact,
+      .two-column {
+        gap: 1.25rem;
+      }
+
+      .hero-visual-card {
+        left: 1.1rem;
+        right: 1.1rem;
+      }
+
+      form {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .contact-actions {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="page">
+    <!-- Header -->
+    <header class="site-header">
+      <div class="shell">
+        <nav class="nav">
+          <div class="nav-left">
+            <div class="logo-mark">
+              <span>LA</span>
+            </div>
+            <div class="logo-text">
+              <strong>Landscape Associates</strong>
+              <small>Landscape Design & Maintenance</small>
+            </div>
+          </div>
+
+          <div class="nav-links">
+            <a href="#services">Services</a>
+            <a href="#projects">Projects</a>
+            <a href="#about">About</a>
+            <a href="#contact">Contact</a>
+          </div>
+
+          <div class="nav-cta">
+            <a href="#contact">
+              <button type="button">
+                <span class="icon">●</span>
+                Request a quote
+              </button>
+            </a>
+          </div>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <!-- Hero -->
+      <div class="shell hero-wrap">
+        <section class="hero">
+          <div class="hero-copy">
+            <div class="hero-copy-eyebrow">
+              <span class="dot"></span>
+              <span>Professional outdoor spaces, carefully maintained.</span>
+            </div>
+            <h1>
+              Timeless landscapes for<br />
+              homes with <span>high standards.</span>
+            </h1>
+            <p class="hero-sub">
+              Landscape Associates designs, builds, and maintains outdoor environments for residential and commercial
+              properties. We handle every detail so you can simply enjoy the space.
+            </p>
+
+            <div class="hero-meta">
+              <div class="hero-actions">
+                <a href="#contact">
+                  <button class="btn-primary" type="button">
+                    <span class="icon">✳</span>
+                    Request a project consultation
+                  </button>
+                </a>
+
+                <a href="tel:+1-000-000-0000">
+                  <button class="btn-ghost" type="button">
+                    <span>Call the office</span>
+                    <span>•</span>
+                    <span>(000) 000-0000</span>
+                  </button>
+                </a>
+              </div>
+
+              <div class="hero-note">
+                <span class="pill">Design · Build · Care</span>
+                <span>Fully licensed & insured.</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="hero-visual" aria-hidden="true">
+            <div class="hero-visual-main"></div>
+            <div class="hero-visual-overlay"></div>
+            <div class="hero-visual-card">
+              <div class="hero-visual-card-main">
+                <span class="hero-visual-card-pill">Current portfolio highlight</span>
+                <strong>Modern outdoor living, built around how you actually live.</strong>
+                <span>Thoughtful planting, clean lines, and warm lighting—finished on schedule and maintained with care.</span>
+              </div>
+              <div class="hero-visual-card-metrics">
+                <span class="label">Completed projects</span>
+                <span class="value">250+ across CA</span>
+                <span class="label">Client satisfaction</span>
+                <span class="value">4.9 ★ average</span>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <!-- Services -->
+      <section id="services">
+        <div class="shell">
+          <div class="section-header">
+            <div>
+              <h2>Services</h2>
+              <h3>From first sketch to ongoing care.</h3>
+            </div>
+            <p>
+              We offer a complete set of landscaping services so you can work with a single, trusted team for design,
+              construction, and maintenance.
+            </p>
+          </div>
+
+          <div class="services-grid">
+            <div class="service-card">
+              <div class="service-icon">✏️</div>
+              <h4>Landscape Design</h4>
+              <p>
+                Site-specific designs that balance structure, planting, lighting, and circulation for a cohesive
+                landscape.
+              </p>
+              <span class="service-tagline">Concept plans · Planting plans</span>
+            </div>
+
+            <div class="service-card">
+              <div class="service-icon">🧱</div>
+              <h4>Hardscaping</h4>
+              <p>
+                Patios, walkways, retaining walls, and outdoor living spaces built with durable materials and clean
+                detailing.
+              </p>
+              <span class="service-tagline">Stone · Pavers · Walls</span>
+            </div>
+
+            <div class="service-card">
+              <div class="service-icon">🌿</div>
+              <h4>Planting & Gardens</h4>
+              <p>
+                Layered, climate-appropriate planting that looks good year-round while staying practical to maintain.
+              </p>
+              <span class="service-tagline">Trees · Shrubs · Seasonal color</span>
+            </div>
+
+            <div class="service-card">
+              <div class="service-icon">💧</div>
+              <h4>Maintenance & Care</h4>
+              <p>
+                Ongoing garden care to keep your property looking sharp—pruning, lawn care, seasonal clean-ups, and more.
+              </p>
+              <span class="service-tagline">Weekly · Seasonal programs</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Projects -->
+      <section id="projects">
+        <div class="shell">
+          <div class="section-header">
+            <div>
+              <h2>Projects</h2>
+              <h3>Built work that speaks for itself.</h3>
+            </div>
+            <p>
+              Every project is tailored to the property and the people who use it. Here is a small snapshot of recent
+              installations and renovations.
+            </p>
+          </div>
+
+          <div class="projects-grid">
+            <div class="project-main">
+              <div class="project-main-caption">
+                <div>
+                  <strong>Hillside entertaining terrace</strong>
+                  <span>
+                    Multi-level stone terraces, integrated seating, and low-glare lighting create a usable outdoor room
+                    with long views.
+                  </span>
+                </div>
+                <span class="badge">Design · Build</span>
+              </div>
+            </div>
+
+            <div class="projects-side">
+              <div class="project-card">
+                <div>
+                  <strong>Front yard refresh</strong>
+                  <span class="meta">Updated entry planting, lighting, and new walkways for better curb appeal.</span>
+                </div>
+                <div class="project-card-meter">
+                  <div class="meter-label">
+                    <span>Timeline</span>
+                    <span>3 weeks</span>
+                  </div>
+                  <div class="meter-bar">
+                    <div class="meter-fill" style="--value: 70%;"></div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="project-card">
+                <div>
+                  <strong>Family backyard</strong>
+                  <span class="meta">Lawn area, play space, and generous planting designed around everyday use.</span>
+                </div>
+                <div class="project-card-meter">
+                  <div class="meter-label">
+                    <span>Repeat clients</span>
+                    <span>68%</span>
+                  </div>
+                  <div class="meter-bar">
+                    <div class="meter-fill" style="--value: 68%;"></div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="project-card">
+                <div>
+                  <strong>Low-water garden</strong>
+                  <span class="meta">Drought-tolerant palette with layered texture and all-season interest.</span>
+                </div>
+                <div class="project-card-meter">
+                  <div class="meter-label">
+                    <span>Water use reduction</span>
+                    <span>Up to 40%</span>
+                  </div>
+                  <div class="meter-bar">
+                    <div class="meter-fill" style="--value: 40%;"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Testimonials + About -->
+      <section id="about">
+        <div class="shell">
+          <div class="section-header">
+            <div>
+              <h2>Studio</h2>
+              <h3>Focused on long-term relationships.</h3>
+            </div>
+            <p>
+              We are a small, detail-oriented team. Most of our work comes from referrals and clients we continue to
+              support year after year.
+            </p>
+          </div>
+
+          <div class="two-column">
+            <div class="testimonials">
+              <div class="testimonial-card">
+                <div class="testimonial-text">
+                  “They transformed our yard into a place we actually use. Communication was clear, timelines were
+                  respected, and the crew was professional throughout.”
+                </div>
+                <div class="testimonial-meta">
+                  <div>
+                    <strong>Sarah M.</strong>
+                    <div>Residential client</div>
+                  </div>
+                  <div class="stars">★★★★★</div>
+                </div>
+              </div>
+
+              <div class="testimonial-card">
+                <div class="testimonial-text">
+                  “Landscape Associates has handled our grounds for years. The property looks sharp, and their team
+                  brings issues to us before they become problems.”
+                </div>
+                <div class="testimonial-meta">
+                  <div>
+                    <strong>Operations director</strong>
+                    <div>Commercial client</div>
+                  </div>
+                  <div class="stars">★★★★★</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="about">
+              <h4>About Landscape Associates</h4>
+              <p>
+                Landscape Associates provides full-service landscape design, installation, and maintenance for
+                discerning residential and commercial clients. Our work is grounded in clear communication, careful
+                execution, and respect for the properties we care for.
+              </p>
+              <p>
+                Whether you need a one-time installation or ongoing maintenance, we approach every project with the same
+                level of attention.
+              </p>
+
+              <div class="about-grid">
+                <div class="about-stat">
+                  <label>Years in practice</label>
+                  <strong>10+</strong>
+                </div>
+                <div class="about-stat">
+                  <label>Completed projects</label>
+                  <strong>250+</strong>
+                </div>
+                <div class="about-stat">
+                  <label>Repeat & referral work</label>
+                  <strong>60%+</strong>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Service areas + Contact -->
+      <section id="contact">
+        <div class="shell">
+          <div class="section-header">
+            <div>
+              <h2>Contact</h2>
+              <h3>Tell us a bit about your project.</h3>
+            </div>
+            <p>
+              Share a few details below and we’ll follow up with a short call to understand your needs, timing, and
+              budget.
+            </p>
+          </div>
+
+          <div class="grid-contact">
+            <div class="areas">
+              <h4>Service areas</h4>
+              <p>
+                We work with residential and commercial clients across the region. If you are unsure whether your
+                property is within our regular service area, please reach out.
+              </p>
+              <div class="areas-list">
+                <span>Residential properties</span>
+                <span>Commercial campuses</span>
+                <span>HOA communities</span>
+                <span>Multi-family housing</span>
+                <span>New builds</span>
+                <span>Renovations</span>
+              </div>
+            </div>
+
+            <div class="contact-card">
+              <div class="contact-heading">
+                <h4>Request a project consultation</h4>
+                <p>
+                  Submit the form and we’ll respond within one business day to coordinate next steps. For urgent matters,
+                  please call the office directly.
+                </p>
+                <div class="contact-meta-mini">
+                  Typical response time: within 24 business hours.
+                </div>
+              </div>
+
+              <form action="mailto:info@landscapeassociates.com" method="post" enctype="text/plain">
+                <div class="form-field">
+                  <label for="name">Name</label>
+                  <input id="name" name="Name" type="text" placeholder="Your full name" required />
+                </div>
+
+                <div class="form-field">
+                  <label for="email">Email</label>
+                  <input id="email" name="Email" type="email" placeholder="you@example.com" required />
+                </div>
+
+                <div class="form-field">
+                  <label for="phone">Phone</label>
+                  <input id="phone" name="Phone" type="tel" placeholder="(000) 000-0000" />
+                </div>
+
+                <div class="form-field">
+                  <label for="property-type">Property type</label>
+                  <select id="property-type" name="Property type">
+                    <option value="">Select an option</option>
+                    <option>Single-family residence</option>
+                    <option>Multi-family residence</option>
+                    <option>Commercial property</option>
+                    <option>HOA / community</option>
+                    <option>Other</option>
+                  </select>
+                </div>
+
+                <div class="form-field full">
+                  <label for="location">Property location</label>
+                  <input id="location" name="Location" type="text" placeholder="City / neighborhood" />
+                </div>
+
+                <div class="form-field full">
+                  <label for="services">What can we help with?</label>
+                  <textarea
+                    id="services"
+                    name="Services"
+                    placeholder="Share a bit about your project, goals, and any timelines we should be aware of."
+                  ></textarea>
+                </div>
+
+                <div class="contact-actions">
+                  <button type="submit">
+                    <span>Submit inquiry</span>
+                    <span>↗</span>
+                  </button>
+                  <small>
+                    By submitting, you consent to us contacting you about this inquiry. We do not share your information
+                    with third parties.
+                  </small>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+      <div class="shell footer-inner">
+        <div>
+          © <span id="year"></span> Landscape Associates. All rights reserved.
+        </div>
+        <div class="footer-contact">
+          <span class="label">Contact</span>
+          <a href="tel:+1-000-000-0000">(000) 000-0000</a>
+          <span>•</span>
+          <a href="mailto:info@landscapeassociates.com">info@landscapeassociates.com</a>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    // Set current year in footer
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
