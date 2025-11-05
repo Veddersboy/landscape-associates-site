@@ -1,683 +1,820 @@
 <!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>lullabyGBS – Website & AI Packages</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Landscape Associates - Animated Concept</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts - Archivo Black (Headings) & Inter (Body) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Inter:wght@300;400;500;600;7Methods:&display=swap" rel="stylesheet">
+    <!-- Feather Icons -->
+    <script src="https://unpkg.com/feather-icons"></script>
+    <!-- AOS (Animate on Scroll) Library -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 
-  <!-- Tailwind CDN -->
-  <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        // Custom Tailwind Config
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'brand-bg': '#FDFBF5', // Toned-down: Warm Beige
+                        'brand-text': '#163721', // Kept: Dark Green
+                        'brand-accent': '#D95B29', // Toned-down: Terracotta/Burnt Orange
+                    },
+                    fontFamily: {
+                        'sans': ['Inter', 'sans-serif'],
+                        'heading': ['Archivo Black', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
 
-  <!-- Tailwind config -->
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          fontFamily: {
-            display: ['"Archivo Black"', 'system-ui', 'sans-serif'],
-            body: ['Inter', 'system-ui', 'sans-serif'],
-          },
-          colors: {
-            brandBg: '#050816',
-            brandPink: '#FF4E88',
-            brandPurple: '#6C5CE7',
-            brandBlue: '#1D9BF0',
-            brandCard: '#0B1020',
-          },
-          boxShadow: {
-            neon: '0 0 30px rgba(129, 140, 248, 0.75)',
-          },
-        },
-      },
-    };
-  </script>
+    <style>
+        /* Base font */
+        body {
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden; /* Prevent horizontal scrollbars from AOS */
+        }
+        
+        /* Apply heading font */
+        h1, h2, h3, h4, h5, h6, #logo-text {
+            font-family: 'Archivo Black', sans-serif;
+        }
 
-  <!-- Google Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link
-    href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Inter:wght@300;400;500;600;700&display=swap"
-    rel="stylesheet"
-  />
+        /* Custom class for hero text shadow */
+        .text-shadow {
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+        }
 
-  <!-- Chart.js -->
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+        /* Custom class for subtle portfolio image animation */
+        .portfolio-img {
+            transition: transform 0.3s ease, filter 0.3s ease;
+        }
+        .portfolio-img:hover {
+            transform: scale(1.05);
+            filter: brightness(1.1);
+        }
 
+        /* Hero parallax container */
+        .hero-bg-container {
+            position: absolute;
+            inset: 0;
+            overflow: hidden;
+            z-index: -1; /* Ensure it's behind the overlay */
+        }
+        
+        /* The image itself, which will be moved by JS */
+        #hero-bg-img {
+            width: 100%;
+            height: 100%;
+            object-cover;
+            /* We'll use 'transform' for parallax, which is better for performance */
+        }
+
+        /* Testimonial carousel fade */
+        .testimonial-item {
+            transition: opacity 0.5s ease-in-out, visibility 0.5s;
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            opacity: 0;
+            visibility: hidden;
+        }
+        .testimonial-item.active {
+            opacity: 1;
+            visibility: visible;
+            position: relative; /* Use relative for the active one to set container height */
+        }
+
+        /* NEW: Hero Image Clip Path */
+        .hero-image-clip {
+            clip-path: ellipse(120% 100% at 50% 100%);
+            /* Creates a soft arch, more dramatic than a simple oval */
+        }
+
+        /* NEW: Marquee Animation */
+        @keyframes scroll-x {
+            from {
+                transform: translateX(0);
+            }
+            to {
+                transform: translateX(-50%);
+            }
+        }
+        .animate-scroll-x {
+            /* We will have two copies of the text, so scrolling 50% looks seamless */
+            animation: scroll-x 40s linear infinite;
+        }
+
+        /* NEW: Before/After Slider */
+        .ba-slider {
+            position: relative;
+            overflow: hidden;
+        }
+        .ba-image-after {
+            position: absolute;
+            inset: 0;
+            width: 50%; /* Initial position */
+            overflow: hidden;
+        }
+        .ba-image-after img {
+            width: 100%;
+            height: 100%;
+            max-width: none; /* Override any potential max-width */
+            object-fit: cover;
+        }
+        .ba-image-before img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .ba-handle {
+            position: absolute;
+            top: 50%;
+            left: 50%; /* Initial position */
+            transform: translate(-50%, -50%);
+            width: 50px;
+            height: 50px;
+            background: white;
+            border: 3px solid #D95B29; /* Use new accent */
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: ew-resize;
+            z-index: 10;
+        }
+        .ba-handle-arrows {
+            color: #D95B29;
+            font-size: 1.5rem;
+            font-weight: 900;
+            transform: rotate(90deg);
+        }
+        /* Hide default range slider */
+        .ba-range {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            cursor: ew-resize;
+            z-index: 20;
+        }
+
+    </style>
 </head>
-<body class="bg-brandBg text-slate-100 font-body">
+<body class="bg-brand-bg text-brand-text antialiased">
 
-  <!-- BLACK FRIDAY / HOLIDAY BANNER -->
-  <div class="bg-gradient-to-r from-emerald-400 via-brandPink to-amber-400 text-slate-950">
-    <div class="mx-auto flex max-w-6xl flex-col items-start gap-2 px-4 py-2 text-xs font-semibold sm:flex-row sm:items-center sm:justify-between sm:text-sm">
-      <span class="flex items-center gap-2">
-        <span>🖤🎄</span>
-        <span>Black Friday & Holiday Offer: lock in lullabyGBS website & care plan pricing until <strong>November 28th</strong>.</span>
-      </span>
-      <a
-        href="#quote-tool"
-        class="inline-flex items-center rounded-full border border-slate-900/40 bg-black/10 px-3 py-1 text-[11px] font-semibold uppercase tracking-wide hover:bg-black/20 sm:text-xs"
-      >
-        Build my holiday quote →
-      </a>
-    </div>
-  </div>
+    <!-- 
+      HEADER / NAVIGATION 
+    -->
+    <header id="main-header" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300">
+        <nav class="container mx-auto max-w-7xl px-6 py-6 flex justify-between items-center">
+            <!-- Logo -->
+            <a href="#" class="text-2xl font-bold tracking-tight text-brand-text" id="logo-text">
+                Landscape Associates
+            </a>
 
-  <!-- Gradient background overlay -->
-  <div class="pointer-events-none fixed inset-x-0 top-0 -z-10 h-[600px] bg-gradient-to-b from-brandPurple/50 via-brandBg to-brandBg blur-3xl opacity-70"></div>
+            <!-- Desktop Nav -->
+            <div class="hidden md:flex items-center space-x-8">
+                <a href="#services" class="text-sm font-medium text-brand-text hover:text-brand-accent transition-colors" id="nav-link-1">Services</a>
+                <a href="#portfolio" class="text-sm font-medium text-brand-text hover:text-brand-accent transition-colors" id="nav-link-2">Portfolio</a>
+                <a href="#about" class="text-sm font-medium text-brand-text hover:text-brand-accent transition-colors" id="nav-link-3">About Us</a>
+                <a href="#locations" class="text-sm font-medium text-brand-text hover:text-brand-accent transition-colors" id="nav-link-4">Locations</a>
+                <a href="#contact" class="inline-block px-6 py-3 text-sm font-medium text-white bg-brand-accent rounded-full shadow-md hover:bg-orange-500 transition-all transform hover:scale-105">
+                    Get a Quote
+                </a>
+            </div>
 
-  <!-- NAVBAR -->
-  <header class="sticky top-0 z-30 border-b border-slate-800/80 bg-brandBg/80 backdrop-blur-xl">
-    <div class="mx-auto flex max-w-6xl items-center justify-between px-4 py-3">
-      <div class="flex items-center gap-2">
-        <div class="h-9 w-9 rounded-2xl bg-gradient-to-br from-brandPink to-brandPurple shadow-neon"></div>
-        <span class="font-display text-lg tracking-wide uppercase">
-          lullabyGBS
-        </span>
-      </div>
-      <nav class="hidden gap-6 text-sm md:flex">
-        <a href="#packages" class="text-slate-300 hover:text-white">Packages</a>
-        <a href="#quote-tool" class="text-slate-300 hover:text-white">Quote Tool</a>
-        <a href="#pricing-chart" class="text-slate-300 hover:text-white">Stats</a>
-      </nav>
-      <a
-        href="#quote-tool"
-        class="rounded-full bg-brandPink px-4 py-1.5 text-xs font-semibold uppercase tracking-wide text-slate-950 shadow-lg shadow-brandPink/40 hover:bg-white transition"
-      >
-        Build Quote
-      </a>
-    </div>
-  </header>
+            <!-- Mobile Menu Button -->
+            <div class="md:hidden">
+                <button id="mobile-menu-button" class="focus:outline-none text-brand-text">
+                    <i data-feather="menu" class="h-6 w-6"></i>
+                </button>
+            </div>
+        </nav>
 
-  <!-- HERO -->
-  <section class="mx-auto flex max-w-6xl flex-col gap-10 px-4 pb-16 pt-10 md:flex-row md:items-center md:pt-14">
-    <div class="md:w-1/2">
-      <p class="mb-3 inline-flex items-center rounded-full border border-brandPink/40 bg-brandCard/60 px-3 py-1 text-xs font-semibold uppercase tracking-[0.2em] text-brandPink">
-        lullabyGBS • Website + AI Automation Studio
-      </p>
-      <h1 class="font-display text-4xl leading-tight tracking-tight sm:text-5xl lg:text-6xl">
-        Turn your <span class="text-brandPink">website</span> into
-        a <span class="bg-gradient-to-r from-brandPink via-brandBlue to-emerald-400 bg-clip-text text-transparent">24/7 growth engine.</span>
-      </h1>
-      <p class="mt-4 max-w-xl text-sm text-slate-300 sm:text-base">
-        lullabyGBS is your digital partner for modern, conversion-focused websites with AI built in. 
-        We help you look premium online, capture better leads, and stay ahead without adding more to your plate.
-      </p>
-
-      <div class="mt-6 flex flex-wrap gap-3 text-xs text-slate-300">
-        <span class="inline-flex items-center gap-2 rounded-full bg-brandCard/80 px-3 py-1">
-          <span class="h-1.5 w-1.5 rounded-full bg-emerald-400"></span>
-          Realtime quote overview
-        </span>
-        <span class="inline-flex items-center gap-2 rounded-full bg-brandCard/80 px-3 py-1">
-          <span class="h-1.5 w-1.5 rounded-full bg-sky-400"></span>
-          Care plans, SEO & AI
-        </span>
-        <span class="inline-flex items-center gap-2 rounded-full bg-brandCard/80 px-3 py-1">
-          <span class="h-1.5 w-1.5 rounded-full bg-brandPink"></span>
-          Built for busy teams
-        </span>
-      </div>
-
-      <div class="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center">
-        <a
-          href="#quote-tool"
-          class="inline-flex items-center justify-center rounded-2xl bg-brandPink px-6 py-3 text-sm font-semibold text-slate-950 shadow-neon hover:bg-white transition"
-        >
-          Build a Live Quote
-        </a>
-        <a
-          href="#packages"
-          class="inline-flex items-center justify-center rounded-2xl border border-slate-700 px-6 py-3 text-sm font-semibold text-slate-200 hover:border-brandPink/70 hover:text-white transition"
-        >
-          Explore Packages
-        </a>
-      </div>
-    </div>
-
-    <!-- Hero stat card -->
-    <div class="mt-10 grid flex-1 gap-4 md:mt-0">
-      <div class="rounded-3xl bg-brandCard/80 p-5 shadow-lg shadow-black/40">
-        <h3 class="text-xs font-semibold uppercase tracking-[0.2em] text-slate-400">
-          Snapshot
-        </h3>
-        <div class="mt-4 grid grid-cols-3 gap-4 text-center text-xs">
-          <div>
-            <div class="font-display text-2xl text-white">$3k</div>
-            <p class="mt-1 text-slate-400">Entry build</p>
-          </div>
-          <div>
-            <div class="font-display text-2xl text-white">$750+</div>
-            <p class="mt-1 text-slate-400">Top care plan / mo</p>
-          </div>
-          <div>
-            <div class="font-display text-2xl text-emerald-400">8</div>
-            <p class="mt-1 text-slate-400">Add-on services</p>
-          </div>
+        <!-- Mobile Menu (Hidden by default) -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white shadow-xl">
+            <a href="#services" class="block px-6 py-3 text-sm font-medium text-brand-text hover:bg-gray-100">Services</a>
+            <a href="#portfolio" class="block px-6 py-3 text-sm font-medium text-brand-text hover:bg-gray-100">Portfolio</a>
+            <a href="#about" class="block px-6 py-3 text-sm font-medium text-brand-text hover:bg-gray-100">About Us</a>
+            <a href="#locations" class="block px-6 py-3 text-sm font-medium text-brand-text hover:bg-gray-100">Locations</a>
+            <a href="#contact" class="block px-6 py-4 text-center text-sm font-medium text-white bg-brand-accent hover:bg-orange-400 transition-colors">
+                Get a Quote
+            </a>
         </div>
-        <p class="mt-5 text-xs text-slate-300">
-          Start with a clean, fixed website build. Then add only the ongoing support, SEO and automation you actually need as you grow.
-        </p>
-      </div>
-    </div>
-  </section>
+    </header>
 
-  <!-- PACKAGES GRID -->
-  <section id="packages" class="border-t border-slate-800/50 bg-gradient-to-b from-brandBg via-[#050818] to-brandBg py-14">
-    <div class="mx-auto max-w-6xl px-4">
-      <div class="mb-8 flex flex-wrap items-end justify-between gap-4">
-        <div>
-          <h2 class="font-display text-2xl sm:text-3xl">Website Builds & Monthly Plans</h2>
-          <p class="mt-2 max-w-xl text-sm text-slate-300">
-            Your website build is a one-time project with a clear scope. Care plans, SEO and AI automation are modular layers you can stack on top, now or later.
-          </p>
+    <main>
+        <!-- 
+          HERO SECTION (RE-IMAGINED)
+        -->
+        <section class="min-h-[700px] md:min-h-screen flex flex-col justify-center pt-32 pb-16 relative overflow-hidden">
+            <div class="container mx-auto max-w-7xl px-6 relative z-10">
+                <!-- Stacked, bold text -->
+                <div class="text-center md:text-left">
+                    <h1 class="text-7xl sm:text-8xl md:text-9xl font-extrabold tracking-tighter text-brand-text -mb-2 md:-mb-4"
+                        data-aos="fade-up" data-aos-duration="800" data-aos-delay="100">
+                        DESIGN.
+                    </h1>
+                    <h1 class="text-7xl sm:text-8xl md:text-9xl font-extrabold tracking-tighter text-brand-text -mb-2 md:-mb-4"
+                        data-aos="fade-up" data-aos-duration="800" data-aos-delay="300">
+                        BUILD.
+                    </h1>
+                    <h1 class="text-7xl sm:text-8xl md:text-9xl font-extrabold tracking-tighter text-brand-text"
+                        data-aos="fade-up" data-aos-duration="800" data-aos-delay="500">
+                        FLOURISH.
+                    </h1>
+                </div>
+
+                <p class="text-xl md:text-2xl font-light mt-8 md:mt-4 max-w-md text-center md:text-left" 
+                   data-aos="fade-up" data-aos-duration="800" data-aos-delay="700">
+                    We create extraordinary outdoor living spaces that blend nature and architecture.
+                </p>
+                <a href="#portfolio" class="inline-block px-10 py-4 mt-8 text-lg font-medium text-white bg-brand-accent rounded-full shadow-lg hover:bg-orange-500 transition-all transform hover:scale-105"
+                   data-aos="fade-up" data-aos-duration="800" data-aos-delay="900">
+                    View Our Work
+                </a>
+            </div>
+
+            <!-- Arched Image Container -->
+            <div class="absolute top-0 right-0 h-full w-full md:w-3/5 z-0" data-aos="fade-in" data-aos-duration="1200">
+                <div class="hero-image-clip h-full w-full">
+                    <!-- UPDATED IMAGE HERE -->
+                    <img src="modern-garden-hero.jpg" 
+                         alt="Modern patio with minimalist design and fire pit" 
+                         class="h-full w-full object-cover"
+                         onerror="this.src='https://placehold.co/1200x1000/EEE/333?text=Modern+Patio'">
+                </div>
+            </div>
+        </section>
+
+        <!-- 
+          SERVICES SECTION 
+        -->
+        <section id="services" class="py-24 bg-white/50">
+            <div class="container mx-auto max-w-7xl px-6">
+                <div class="text-center mb-16" data-aos="fade-up">
+                    <span class="text-brand-accent font-semibold uppercase tracking-wider">Our Expertise</span>
+                    <h2 class="text-4xl md:text-5xl font-bold tracking-tight mt-2">Services We Provide</h2>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+                    <!-- Service Card 1 -->
+                    <div class="bg-white rounded-xl shadow-lg overflow-hidden transition-all duration-300 hover:shadow-2xl transform hover:-translate-y-2" data-aos="fade-up" data-aos-delay="100">
+                        <img src="https://images.unsplash.com/photo-1588679614452-891804aff9ad?q=80&w=1974&auto=format&fit=crop" alt="Modern backyard landscape design" class="w-full h-56 object-cover" onerror="this.src='https://placehold.co/800x600/669966/FFF?text=Landscape+Design'">
+                        <div class="p-8">
+                            <h3 class="text-2xl font-semibold mb-3">Landscape Design</h3>
+                            <p class="text-gray-600 mb-5 leading-relaxed">From initial concept to 3D rendering, our designers craft bespoke plans that reflect your vision.</p>
+                            <a href="#" class="font-medium text-brand-accent hover:text-orange-500 transition-colors">Learn More &rarr;</a>
+                        </div>
+                    </div>
+                    <!-- Service Card 2 -->
+                    <div class="bg-white rounded-xl shadow-lg overflow-hidden transition-all duration-300 hover:shadow-2xl transform hover:-translate-y-2" data-aos="fade-up" data-aos-delay="200">
+                        <img src="https://images.unsplash.com/photo-1598379032541-4501255518ff?q=80&w=1964&auto=format&fit=crop" alt="Hardscaping and modern stone patio" class="w-full h-56 object-cover" onerror="this.src='https://placehold.co/800x600/999966/FFF?text=Hardscaping'">
+                        <div class="p-8">
+                            <h3 class="text-2xl font-semibold mb-3">Hardscape & Patios</h3>
+                            <p class="text-gray-600 mb-5 leading-relaxed">Patios, walkways, retaining walls, and outdoor kitchens built with precision and quality materials.</p>
+                            <a href="#" class="font-medium text-brand-accent hover:text-orange-500 transition-colors">Learn More &rarr;</a>
+                        </div>
+                    </div>
+                    <!-- Service Card 3 -->
+                    <div class="bg-white rounded-xl shadow-lg overflow-hidden transition-all duration-300 hover:shadow-2xl transform hover:-translate-y-2" data-aos="fade-up" data-aos-delay="300">
+                        <img src="https://images.unsplash.com/photo-1544983353-83c31896f60a?q=80&w=1974&auto=format&fit=crop" alt="Lush, manicured garden planting" class="w-full h-56 object-cover" onerror="this.src='https://placehold.co/800x600/666699/FFF?text=Planting+&+Maintenance'">
+                        <div class="p-8">
+                            <h3 class="text-2xl font-semibold mb-3">Planting & Maintenance</h3>
+                            <p class="text-gray-600 mb-5 leading-relaxed">Expert planting of native and exotic flora, plus white-glove maintenance to keep it thriving.</p>
+                            <a href="#" class="font-medium text-brand-accent hover:text-orange-500 transition-colors">Learn More &rarr;</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 
+          NEW: MARQUEE SECTION
+        -->
+        <section class="py-12 bg-brand-text text-white overflow-hidden">
+            <div class="flex animate-scroll-x">
+                <!-- Create two identical groups for seamless loop -->
+                <div class="flex items-center space-x-12 px-6 min-w-max">
+                    <span class="text-3xl font-heading">LANDSCAPE DESIGN</span>
+                    <span class="text-3xl text-brand-accent font-heading">•</span>
+                    <span class="text-3xl font-heading">HARDSCAPE & PATIOS</span>
+                    <span class="text-3xl text-brand-accent font-heading">•</span>
+                    <span class="text-3xl font-heading">PLANTING & MAINTENANCE</span>
+                    <span class="text-3xl text-brand-accent font-heading">•</span>
+                    <span class="text-3xl font-heading">OUTDOOR KITCHENS</span>
+                    <span class="text-3xl text-brand-accent font-heading">•</span>
+                </div>
+                <div class="flex items-center space-x-12 px-6 min-w-max">
+                    <span class="text-3xl font-heading">LANDSCAPE DESIGN</span>
+                    <span class="text-3xl text-brand-accent font-heading">•</span>
+                    <span class="text-3xl font-heading">HARDSCAPE & PATIOS</span>
+                    <span class="text-3xl text-brand-accent font-heading">•</span>
+                    <span class="text-3xl font-heading">PLANTING & MAINTENANCE</span>
+                    <span class="text-3xl text-brand-accent font-heading">•</span>
+                    <span class="text-3xl font-heading">OUTDOOR KITCHENS</span>
+                    <span class="text-3xl text-brand-accent font-heading">•</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- 
+          ABOUT / WHY CHOOSE US SECTION
+        -->
+        <section id="about" class="py-24 bg-transparent overflow-hidden">
+            <div class="container mx-auto max-w-7xl px-6 grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
+                <div data-aos="fade-right">
+                    <img src="https://images.unsplash.com/photo-1523280302068-07464e2d874e?q=80&w=1974&auto=format&fit=crop" alt="Landscape Associates team working on a project" class="w-full h-auto rounded-xl shadow-lg object-cover" onerror="this.src='https://placehold.co/800x700/DDD/333?text=Our+Team+in+Action'">
+                </div>
+                <div class="max-w-lg" data-aos="fade-left">
+                    <span class="text-brand-accent font-semibold uppercase tracking-wider">Why Choose Us</span>
+                    <h2 class="text-4xl md:text-5xl font-bold tracking-tight mt-2 mb-6">A Passion for Perfection</h2>
+                    <p class="text-lg text-brand-text/70 mb-6 leading-relaxed">
+                        For over 20 years, Landscape Associates has been synonymous with quality in California landscaping. We're not just contractors; we're artisans, collaborators, and stewards of the land.
+                    </p>
+                    <ul class="space-y-4 mb-8">
+                        <li class="flex items-center">
+                            <i data-feather="check-circle" class="h-6 w-6 text-brand-accent mr-3"></i>
+                            <span class="text-lg text-brand-text">Award-Winning Design Team</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i data-feather="check-circle" class="h-6 w-6 text-brand-accent mr-3"></i>
+                            <span class="text-lg text-brand-text">Sustainable & Eco-Friendly Practices</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i data-feather="check-circle" class="h-6 w-6 text-brand-accent mr-3"></i>
+                            <span class="text-lg text-brand-text">Transparent Pricing & Communication</span>
+                        </li>
+                    </ul>
+                    <a href="#contact" class="inline-block px-8 py-4 text-lg font-medium text-white bg-brand-accent rounded-full shadow-md hover:bg-orange-500 transition-all transform hover:scale-105">
+                        Meet the Team
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- 
+          NEW: BEFORE/AFTER SLIDER
+        -->
+        <section id="transformation" class="py-24 bg-white/50">
+            <div class="container mx-auto max-w-7xl px-6">
+                <div class="text-center mb-16" data-aos="fade-up">
+                    <span class="text-brand-accent font-semibold uppercase tracking-wider">Proven Results</span>
+                    <h2 class="text-4xl md:text-5xl font-bold tracking-tight mt-2">See the Transformation</h2>
+                    <p class="text-lg text-brand-text/70 mt-4 max-w-2xl mx-auto">Drag the slider to see our work in action.</p>
+                </div>
+
+                <div class="max-w-5xl mx-auto" data-aos="fade-up">
+                    <div class="ba-slider rounded-xl shadow-2xl" id="ba-slider-container">
+                        <!-- Before Image -->
+                        <div class="ba-image-before">
+                            <img src="https://images.unsplash.com/photo-1549449339-01b73c4866f8?q=80&w=1964&auto=format&fit=crop" 
+                                 alt="Messy backyard before landscaping"
+                                 onerror="this.src='https://placehold.co/1200x800/8B4513/FFF?text=Before'">
+                        </div>
+                        <!-- After Image (in resizable container) -->
+                        <div class="ba-image-after" id="ba-after-image">
+                            <img src="https://images.unsplash.com/photo-1562711037-05c2d3618152?q=80&w=1964&auto=format&fit=crop" 
+                                 alt="Beautiful landscaped backyard"
+                                 onerror="this.src='https://placehold.co/1200x800/556B2F/FFF?text=After'">
+                        </div>
+                        <!-- Slider Handle -->
+                        <div class="ba-handle" id="ba-handle">
+                            <span class="ba-handle-arrows">||</span>
+                        </div>
+                        <!-- Range Input -->
+                        <input type="range" min="0" max="100" value="50" class="ba-range" id="ba-range-slider" aria-label="Before/After Image Slider">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 
+          PORTFOLIO HIGHLIGHT (Re-purposed to be the counter section)
+        -->
+        <section id="portfolio" class="py-24 bg-transparent">
+            <div class="container mx-auto max-w-7xl px-6">
+                <div class="text-center mb-16" data-aos="fade-up">
+                    <h2 class="text-4xl md:text-5xl font-bold tracking-tight">Our Impact by the Numbers</h2>
+                </div>
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-8 text-center" id="counter-section">
+                    <div data-aos="fade-up" data-aos-delay="100">
+                        <span class="block text-6xl font-bold" data-target="500">0</span>
+                        <span class="block text-xl font-medium mt-2">Projects Completed</span>
+                    </div>
+                    <div data-aos="fade-up" data-aos-delay="200">
+                        <span class="block text-6xl font-bold" data-target="20">0</span>
+                        <span class="block text-xl font-medium mt-2">Years of Experience</span>
+                    </div>
+                    <div data-aos="fade-up" data-aos-delay="300">
+                        <span class="block text-6xl font-bold" data-target="100">0</span>
+                        <span class="block text-xl font-medium mt-2">Client Satisfaction</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- 
+          PORTFOLIO HIGHLIGHT
+        -->
+        <section id="portfolio" class="py-24 bg-white/50">
+            <div class="container mx-auto max-w-7xl px-6">
+                <div class="text-center mb-16" data-aos="fade-up">
+                    <h2 class="text-4xl md:text-5xl font-bold tracking-tight">Our Recent Projects</h2>
+                    <p class="text-lg text-brand-text/70 mt-4 max-w-2xl mx-auto">See how we've transformed properties across California.</p>
+                </div>
+                
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <!-- Portfolio Item -->
+                    <a href="#" class="group block rounded-xl shadow-lg overflow-hidden" data-aos="zoom-in" data-aos-delay="100">
+                        <div class="relative">
+                            <img src="https://images.unsplash.com/photo-1562711037-05c2d3618152?q=80&w=1964&auto=format&fit=crop" alt="Napa Valley Estate" class="w-full h-72 object-cover portfolio-img" onerror="this.src='https://placehold.co/800x600/556B2F/FFF?text=Napa+Valley+Estate'">
+                            <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-40 transition-all duration-300 flex items-end">
+                                <h3 class="text-white text-2xl font-semibold p-6 opacity-0 group-hover:opacity-100 transition-opacity duration-300 transform translate-y-4 group-hover:translate-y-0">Napa Valley Estate</h3>
+                            </div>
+                        </div>
+                    </a>
+                    <!-- Portfolio Item -->
+                    <a href="#" class="group block rounded-xl shadow-lg overflow-hidden" data-aos="zoom-in" data-aos-delay="200">
+                        <div class="relative">
+                            <img src="https://images.unsplash.com/photo-1617094250106-f1dec3161b3b?q=80&w=1974&auto=format&fit=crop" alt="Modern SF Rooftop Garden" class="w-full h-72 object-cover portfolio-img" onerror="this.src='https://placehold.co/800x600/8B4513/FFF?text=Modern+SF+Rooftop'">
+                            <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-40 transition-all duration-300 flex items-end">
+                                <h3 class="text-white text-2xl font-semibold p-6 opacity-0 group-hover:opacity-100 transition-opacity duration-300 transform translate-y-4 group-hover:translate-y-0">Modern SF Rooftop</h3>
+                            </div>
+                        </div>
+                    </a>
+                    <!-- Portfolio Item -->
+                    <a href="#" class="group block rounded-xl shadow-lg overflow-hidden" data-aos="zoom-in" data-aos-delay="300">
+                        <div class="relative">
+                            <img src="https://images.unsplash.com/photo-1571001839911-37d110f0b3e5?q=80&w=1974&auto=format&fit=crop" alt="Ojai Poolside Retreat" class="w-full h-72 object-cover portfolio-img" onerror="this.src='https://placehold.co/800x600/D2B48C/333?text=Ojai+Poolside+Retreat'">
+                            <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-40 transition-all duration-300 flex items-end">
+                                <h3 class="text-white text-2xl font-semibold p-6 opacity-0 group-hover:opacity-100 transition-opacity duration-300 transform translate-y-4 group-hover:translate-y-0">Ojai Poolside Retreat</h3>
+                            </div>
+                        </div>
+                    </a>
+                    <!-- More items... -->
+                    <a href="#" class="group block rounded-xl shadow-lg overflow-hidden sm:hidden lg:block" data-aos="zoom-in" data-aos-delay="400">
+                        <div class="relative">
+                            <img src="https://images.unsplash.com/photo-1551633509-abdf8b813b18?q=80&w=1974&auto=format&fit=crop" alt="Malibu Native Garden" class="w-full h-72 object-cover portfolio-img" onerror="this.src='https://placehold.co/800x600/BDB76B/333?text=Malibu+Native+Garden'">
+                            <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-40 transition-all duration-300 flex items-end">
+                                <h3 class="text-white text-2xl font-semibold p-6 opacity-0 group-hover:opacity-100 transition-opacity duration-300 transform translate-y-4 group-hover:translate-y-0">Malibu Native Garden</h3>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="#" class="group block rounded-xl shadow-lg overflow-hidden sm:hidden lg:block" data-aos="zoom-in" data-aos-delay="500">
+                        <div class="relative">
+                            <img src="https://images.unsplash.com/photo-1583852781812-c0a765a9a58c?q=80&w=2002&auto=format&fit=crop" alt="Zen Courtyard" class="w-full h-72 object-cover portfolio-img" onerror="this.src='https://placehold.co/800x600/2F4F4F/FFF?text=Zen+Courtyard'">
+                            <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-40 transition-all duration-300 flex items-end">
+                                <h3 class="text-white text-2xl font-semibold p-6 opacity-0 group-hover:opacity-100 transition-opacity duration-300 transform translate-y-4 group-hover:translate-y-0">Zen Courtyard</h3>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="#" class="group block rounded-xl shadow-lg overflow-hidden sm:hidden lg:block" data-aos="zoom-in" data-aos-delay="600">
+                        <div class="relative">
+                            <img src="https://images.unsplash.com/photo-1600585152915-d208bec867a1?q=80&w=1972&auto=format&fit=crop" alt="Outdoor Kitchen & Firepit" class="w-full h-72 object-cover portfolio-img" onerror="this.src='https://placehold.co/800x600/CD853F/FFF?text=Outdoor+Kitchen'">
+                            <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-40 transition-all duration-300 flex items-end">
+                                <h3 class="text-white text-2xl font-semibold p-6 opacity-0 group-hover:opacity-100 transition-opacity duration-300 transform translate-y-4 group-hover:translate-y-0">Outdoor Kitchen</h3>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+
+                <div class="text-center mt-16" data-aos="fade-up">
+                    <a href="#" class="inline-block px-10 py-4 text-lg font-medium text-white bg-brand-accent rounded-full shadow-md hover:bg-orange-500 transition-all transform hover:scale-105">
+                        Explore Full Portfolio
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- 
+          TESTIMONIAL CAROUSEL SECTION
+        -->
+        <section class="py-24 bg-brand-accent text-white">
+            <div class="container mx-auto max-w-4xl px-6 text-center" data-aos="fade-up">
+                <h2 class="text-4xl font-bold tracking-tight mb-8">What Our Clients Say</h2>
+                <div class="relative min-h-[250px]" id="testimonial-container">
+                    
+                    <!-- Testimonial 1 -->
+                    <div class="testimonial-item active">
+                        <div class="text-3xl font-light italic leading-relaxed">
+                            "Landscape Associates transformed our weed-filled backyard into a private oasis. Their attention to detail was impeccable, and the crew was professional and clean. We couldn't be happier."
+                        </div>
+                        <p class="mt-8 text-xl font-semibold tracking-wide">
+                            - The Sharma Family, Los Gatos
+                        </p>
+                    </div>
+
+                    <!-- Testimonial 2 -->
+                    <div class="testimonial-item">
+                        <div class="text-3xl font-light italic leading-relaxed">
+                            "The design process was a dream. They listened to our vision, added their own expert creativity, and delivered a 3D rendering that blew us away. The final product was even better."
+                        </div>
+                        <p class="mt-8 text-xl font-semibold tracking-wide">
+                            - Mark & Emily, San Francisco
+                        </p>
+                    </div>
+
+                    <!-- Testimonial 3 -->
+                    <div class="testimonial-item">
+                        <div class="text-3xl font-light italic leading-relaxed">
+                            "Our new outdoor kitchen and patio are the envy of the neighborhood. It's truly an extension of our home. Worth every penny for the quality of life (and property value) it added."
+                        </div>
+                        <p class="mt-8 text-xl font-semibold tracking-wide">
+                            - David Chen, Napa
+                        </p>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- 
+          LOCATIONS SECTION
+        -->
+        <section id="locations" class="py-24 bg-transparent">
+            <div class="container mx-auto max-w-7xl px-6" data-aos="fade-up">
+                <div class="text-center mb-16">
+                    <h2 class="text-4xl md:text-5xl font-bold tracking-tight">We Serve You Where You Are</h2>
+                    <p class="text-lg text-brand-text/70 mt-4 max-w-2xl mx-auto">Our teams are based throughout California, ready to bring your vision to life.</p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
+                    <div>
+                        <h3 class="text-3xl font-semibold mb-4">Our Main Offices</h3>
+                        <p class="text-brand-text/70 mb-6 leading-relaxed">While our crews serve the entire state, you can find our primary design studios in:</p>
+                        <ul class="space-y-3 mb-8">
+                            <li class="text-lg text-brand-text"><strong>Bay Area:</strong> 123 Design St, San Francisco, CA</li>
+                            <li class="text-lg text-brand-text"><strong>SoCal:</strong> 456 Palm Ave, Los Angeles, CA</li>
+                            <li class="text-lg text-brand-text"><strong>Wine Country:</strong> 789 Vineyard Rd, Napa, CA</li>
+                        </ul>
+                    <a href="#" class="font-medium text-brand-accent hover:text-orange-500 transition-colors text-lg">See All Locations & Service Areas &rarr;</a>
+                    </div>
+                    <div>
+                        <img class="w-full h-96 object-cover rounded-xl shadow-lg" 
+                             src="https://images.unsplash.com/photo-1590492314775-3e0ce114e138?q=80&w=1974&auto=format&fit=crop" 
+                             alt="Map of California service areas"
+                             onerror="this.src='https://placehold.co/800x700/DDD/333?text=California+Service+Area'">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 
+          FINAL CTA SECTION
+        -->
+        <section id="contact" class="py-24 bg-white/50 border-t border-gray-200 overflow-hidden">
+            <div class="container mx-auto max-w-5xl px-6">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-16">
+                    <div class="pr-8" data-aos="fade-right">
+                        <h2 class="text-4xl md:text-5xl font-bold tracking-tight mb-4">Ready to Start Your Project?</h2>
+                        <p class="text-lg text-brand-text/70 mb-8 leading-relaxed">Contact us today for a complimentary consultation. Let's discuss how we can create your perfect outdoor space.</p>
+                        <div class="space-y-4">
+                            <p class="flex items-center text-lg">
+                                <i data-feather="phone" class="h-5 w-5 text-brand-accent mr-3"></i>
+                                (800) 555-1234
+                            </p>
+                            <p class="flex items-center text-lg">
+                                <i data-feather="mail" class="h-5 w-5 text-brand-accent mr-3"></i>
+                                newprojects@landscape.com
+                            </p>
+                            <p class="flex items-center text-lg">
+                                <i data-feather="map-pin" class="h-5 w-5 text-brand-accent mr-3"></i>
+                                Serving All of California
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Simple Contact Form -->
+                    <div class="bg-white p-8 rounded-xl shadow-lg" data-aos="fade-left">
+                        <form action="#" method="POST" class="space-y-5">
+                            <div>
+                                <label for="name" class="block text-sm font-medium text-gray-700">Full Name</label>
+                                <input type="text" name="name" id="name" required class="mt-1 block w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-brand-accent focus:border-brand-accent">
+                            </div>
+                            <div>
+                                <label for="email" class="block text-sm font-medium text-gray-700">Email Address</label>
+                                <input type="email" name="email" id="email" required class="mt-1 block w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-brand-accent focus:border-brand-accent">
+                            </div>
+                            <div>
+                                <label for="message" class="block text-sm font-medium text-gray-700">Tell us about your project</label>
+                                <textarea name="message" id="message" rows="4" class="mt-1 block w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-brand-accent focus:border-brand-accent"></textarea>
+                            </div>
+                            <div>
+                                <button type="submit" class="w-full px-6 py-4 text-lg font-medium text-white bg-brand-accent rounded-full shadow-md hover:bg-orange-500 transition-all transform hover:scale-105">
+                                    Send Inquiry
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- 
+      FOOTER 
+    -->
+    <footer class="bg-brand-text text-gray-400 py-16">
+        <div class="container mx-auto max-w-7xl px-6">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <!-- Logo & About -->
+                <div>
+                    <h3 class="text-2xl font-bold text-white mb-4">Landscape Associates</h3>
+                    <p class="text-sm leading-relaxed">Creating California's most breathtaking outdoor living spaces since 2001.</p>
+                </div>
+                <!-- Quick Links -->
+                <div>
+                    <h4 class="text-lg font-semibold text-white mb-4">Quick Links</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#services" class="hover:text-white transition-colors">Services</a></li>
+                        <li><a href="#portfolio" class="hover:text-white transition-colors">Portfolio</a></li>
+                        <li><a href="#about" class="hover:text-white transition-colors">About Us</a></li>
+                        <li><a href="#contact" class="hover:text-white transition-colors">Contact</a></li>
+                    </ul>
+                </div>
+                <!-- Contact Info -->
+                <div>
+                    <h4 class="text-lg font-semibold text-white mb-4">Contact Us</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li>(800) 555-1234</li>
+                        <li>newprojects@landscape.com</li>
+                        <li>Bay Area | Los Angeles | Napa</li>
+                    </ul>
+                </div>
+                <!-- Social Media -->
+                <div>
+                    <h4 class="text-lg font-semibold text-white mb-4">Follow Us</h4>
+                    <div class="flex space-x-4">
+                        <a href="#" class="hover:text-white transition-colors"><i data-feather="facebook" class="h-6 w-6"></i></a>
+                        <a href="#" class="hover:text-white transition-colors"><i data-feather="instagram" class="h-6 w-6"></i></a>
+                        <a href="#" class="hover:text-white transition-colors"><i data-feather="linkedin" class="h-6 w-6"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="mt-12 pt-8 border-t border-gray-700 text-center text-sm">
+                <p>&copy; 2024 Landscape Associates. All rights reserved.</p>
+            </div>
         </div>
-        <span class="rounded-full bg-brandCard/80 px-3 py-1 text-xs font-medium text-slate-300">
-          Website builds • Care plans • SEO • AI
-        </span>
-      </div>
+    </footer>
 
-      <div class="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
-        <!-- WEBSITE BUILDS -->
-        <article class="relative flex flex-col rounded-3xl bg-brandCard/80 p-5 shadow-lg shadow-black/40 ring-1 ring-slate-800/70">
-          <div class="mb-3 inline-flex rounded-full bg-emerald-500/10 px-2 py-1 text-[11px] font-semibold text-emerald-300">
-            Website • Starter
-          </div>
-          <h3 class="font-display text-lg">Starter Site</h3>
-          <p class="mt-2 text-xs text-slate-300">
-            5–7 pages (Home, About, Services, Contact, Blog), mobile-responsive design,
-            basic SEO, contact form & social links.
-          </p>
-          <div class="mt-4 flex items-baseline gap-2">
-            <span class="font-display text-2xl">$3,000</span>
-            <span class="text-xs text-slate-400">one-time</span>
-          </div>
-          <p class="mt-1 text-[11px] text-slate-400">Ideal for firms that need a sharp, credible online presence fast.</p>
-        </article>
+    <script>
+        // Feather Icons initialization
+        feather.replace();
 
-        <article class="relative flex flex-col rounded-3xl bg-brandCard/80 p-5 shadow-lg shadow-black/40 ring-1 ring-slate-800/70">
-          <div class="mb-3 inline-flex rounded-full bg-sky-500/10 px-2 py-1 text-[11px] font-semibold text-sky-300">
-            Website • Business Pro
-          </div>
-          <h3 class="font-display text-lg">Business Pro</h3>
-          <p class="mt-2 text-xs text-slate-300">
-            10–15 pages, custom design, CMS, lead capture forms, blog,
-            and e-commerce-ready (up to ~20 products).
-          </p>
-          <div class="mt-4 flex items-baseline gap-2">
-            <span class="font-display text-2xl">$4,500</span>
-            <span class="text-xs text-slate-400">one-time</span>
-          </div>
-          <p class="mt-1 text-[11px] text-slate-400">Great for growing teams who want space for case studies, services and content.</p>
-        </article>
+        // AOS Initialization
+        AOS.init({
+            duration: 800, // Animation duration
+            offset: 120,    // Offset (in px) from the original trigger point
+            once: true,     // Whether animation should happen only once
+            easing: 'ease-in-out', // Easing function
+        });
 
-        <article class="relative flex flex-col rounded-3xl bg-brandCard/80 p-5 shadow-lg shadow-brandPink/20 ring-1 ring-brandPink/70">
-          <div class="mb-3 inline-flex items-center gap-1 rounded-full bg-brandPink/15 px-2 py-1 text-[11px] font-semibold text-brandPink">
-            <span class="h-1.5 w-1.5 rounded-full bg-brandPink"></span>
-            Website • Enterprise
-          </div>
-          <h3 class="font-display text-lg">Enterprise</h3>
-          <p class="mt-2 text-xs text-slate-300">
-            Unlimited pages, advanced e-commerce, API integrations
-            (CRM, inventory, etc.), and enhanced security.
-          </p>
-          <div class="mt-4 flex items-baseline gap-2">
-            <span class="font-display text-2xl">$10,000</span>
-            <span class="text-xs text-slate-400">one-time</span>
-          </div>
-          <p class="mt-1 text-[11px] text-slate-400">For teams that treat their website as a core part of operations and sales.</p>
-        </article>
+        // Mobile Menu Toggle
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
 
-        <!-- MONTHLY PLANS -->
-        <article class="relative flex flex-col rounded-3xl bg-brandCard/80 p-5 shadow-lg shadow-black/40 ring-1 ring-slate-800/70">
-          <div class="mb-3 inline-flex rounded-full bg-violet-500/15 px-2 py-1 text-[11px] font-semibold text-violet-300">
-            Plan • Secure Site
-          </div>
-          <h3 class="font-display text-lg">Secure Site</h3>
-          <p class="mt-2 text-xs text-slate-300">
-            Weekly backups, core/plugin updates, security monitoring & firewall,
-            plus 1 hour of content/gallery updates.
-          </p>
-          <div class="mt-4 flex items-baseline gap-2">
-            <span class="font-display text-2xl">$175</span>
-            <span class="text-xs text-slate-400">/ month</span>
-          </div>
-          <p class="mt-1 text-[11px] text-emerald-300">
-            Includes an AI content assistant to keep your key pages fresh.
-          </p>
-        </article>
+        // Header scroll effect
+        const header = document.getElementById('main-header');
+        const logoText = document.getElementById('logo-text');
+        const navLinks = [
+            document.getElementById('nav-link-1'),
+            document.getElementById('nav-link-2'),
+            document.getElementById('nav-link-3'),
+            document.getElementById('nav-link-4')
+        ];
+        
+        function setHeaderState() {
+            if (window.scrollY > 50) {
+                header.classList.add('bg-brand-bg', 'shadow-lg');
+                header.classList.remove('py-6');
+                header.classList.add('py-4');
+                logoText.classList.add('text-brand-text');
+                mobileMenuButton.classList.add('text-brand-text');
+                navLinks.forEach(link => {
+                    link.classList.add('text-brand-text', 'hover:text-brand-accent');
+                    link.classList.remove('text-white', 'hover:text-gray-200'); // Clean up old classes
+                });
+            } else {
+                header.classList.remove('bg-brand-bg', 'shadow-lg');
+                header.classList.add('py-6');
+                header.classList.remove('py-4');
+                logoText.classList.add('text-brand-text');
+                mobileMenuButton.classList.add('text-brand-text');
+                navLinks.forEach(link => {
+                    link.classList.add('text-brand-text', 'hover:text-brand-accent');
+                    link.classList.remove('text-white', 'hover:text-gray-200'); // Clean up old classes
+                });
+            }
+        }
+        setHeaderState(); // Set initial state
+        window.addEventListener('scroll', setHeaderState); // Update on scroll
 
-        <!-- GROWTH ENGINE – HOLIDAY DEAL LOOK -->
-        <article class="relative flex flex-col rounded-3xl bg-gradient-to-br from-emerald-500/20 via-brandCard to-brandPink/25 p-5 shadow-neon ring-1 ring-emerald-400/80">
-          <div class="mb-2 flex items-center justify-between">
-            <div class="inline-flex items-center gap-1 rounded-full bg-emerald-500/20 px-2 py-1 text-[11px] font-semibold text-emerald-200">
-              🎄 Black Friday • Holiday Deal
-            </div>
-            <span class="rounded-full bg-black/40 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-amber-200">
-              Most Popular
-            </span>
-          </div>
-          <div class="mb-1 inline-flex rounded-full bg-fuchsia-500/20 px-2 py-1 text-[11px] font-semibold text-fuchsia-200">
-            Plan • Growth Engine
-          </div>
-          <h3 class="font-display text-lg">Growth Engine</h3>
-          <p class="mt-2 text-xs text-slate-100">
-            Daily backups, uptime monitoring, monthly analytics and seasonal promo updates — 
-            ideal for active marketing and campaigns.
-          </p>
-          <div class="mt-4 flex items-baseline gap-2">
-            <span class="font-display text-2xl">$400</span>
-            <span class="text-xs text-slate-100">/ month</span>
-          </div>
-          <p class="mt-1 text-[11px] text-emerald-200">
-            Adds an AI quote-qualifier chatbot so visitors are filtered and warmed up before your team steps in.
-          </p>
-        </article>
+        // Hero Parallax Effect
+        const heroBg = document.getElementById('hero-bg-img');
+        if (heroBg) { // Check if heroBg exists (it doesn't in the new hero)
+            window.addEventListener('scroll', () => {
+                const scroll = window.pageYOffset;
+                // Apply a subtle vertical transform
+                heroBg.style.transform = `translateY(${scroll * 0.3}px)`;
+            });
+        }
 
-        <article class="relative flex flex-col rounded-3xl bg-gradient-to-br from-brandPurple/30 via-brandCard to-brandPink/20 p-5 shadow-neon ring-1 ring-brandPurple/70">
-          <div class="mb-3 inline-flex rounded-full bg-black/25 px-2 py-1 text-[11px] font-semibold text-amber-300">
-            Plan • Automated Hub
-          </div>
-          <h3 class="font-display text-lg">Automated Hub</h3>
-          <p class="mt-2 text-xs text-slate-200">
-            Real-time backups, all Growth Engine features, staging site for testing,
-            priority support & 5 hours of updates.
-          </p>
-          <div class="mt-4 flex items-baseline gap-2">
-            <span class="font-display text-2xl">$750+</span>
-            <span class="text-xs text-slate-200">/ month</span>
-          </div>
-          <p class="mt-1 text-[11px] text-emerald-200">
-            Includes AI lead scoring and automated follow-ups so your sales time is spent on the right opportunities.
-          </p>
-        </article>
-      </div>
-    </div>
-  </section>
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                if (!mobileMenu.classList.contains('hidden')) {
+                    mobileMenu.classList.add('hidden');
+                }
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
 
-  <!-- QUOTE TOOL -->
-  <section id="quote-tool" class="border-t border-slate-800/70 bg-brandBg py-14">
-    <div class="mx-auto max-w-6xl px-4">
-      <div class="mb-8 flex flex-wrap items-end justify-between gap-4">
-        <div>
-          <h2 class="font-display text-2xl sm:text-3xl">Client Quote Overview</h2>
-          <p class="mt-2 max-w-xl text-sm text-slate-300">
-            Build a quick picture of what you’re proposing for a client. Choose the website build, 
-            then tick the services you recommend — the summary on the right updates automatically.
-          </p>
-        </div>
-        <p class="text-xs text-slate-400">
-          Perfect for live calls, screenshares and internal pricing discussions.
-        </p>
-      </div>
+        // Counter Animation (re-added as per previous request)
+        function startCounter(el) {
+            const target = parseInt(el.dataset.target, 10);
+            const duration = 2000; // 2 seconds
+            const increment = target / (duration / 16); // ~60fps
+            let current = 0;
 
-      <div class="grid gap-6 lg:grid-cols-[minmax(0,1.4fr),minmax(0,1fr)]">
-        <!-- Left: Form -->
-        <div class="rounded-3xl bg-brandCard/90 p-6 shadow-lg shadow-black/40 ring-1 ring-slate-800/70">
-          <div class="grid gap-4 sm:grid-cols-2">
-            <div>
-              <label class="text-xs font-medium text-slate-300">Client Name</label>
-              <input
-                id="clientName"
-                type="text"
-                placeholder="Acme Design-Build"
-                class="mt-1 w-full rounded-xl border border-slate-700 bg-slate-950/60 px-3 py-2 text-sm text-slate-100 placeholder:text-slate-500 focus:border-brandPink focus:outline-none"
-              />
-            </div>
-            <div>
-              <label class="text-xs font-medium text-slate-300">Project</label>
-              <input
-                id="projectName"
-                type="text"
-                placeholder="New website + automation"
-                class="mt-1 w-full rounded-xl border border-slate-700 bg-slate-950/60 px-3 py-2 text-sm text-slate-100 placeholder:text-slate-500 focus:border-brandPink focus:outline-none"
-              />
-            </div>
-          </div>
+            const updateCount = () => {
+                current += increment;
+                if (current < target) {
+                    el.innerText = Math.ceil(current);
+                    requestAnimationFrame(updateCount);
+                } else {
+                    el.innerText = target; // Ensure it ends on the exact number
+                }
+            };
+            requestAnimationFrame(updateCount);
+        }
 
-          <!-- Core Package -->
-          <div class="mt-6 border-t border-slate-700 pt-5">
-            <h3 class="text-xs font-semibold uppercase tracking-[0.2em] text-slate-400">
-              Website Build
-            </h3>
+        const counterSection = document.getElementById('counter-section');
+        const counters = counterSection.querySelectorAll('[data-target]');
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    counters.forEach(counter => {
+                        startCounter(counter);
+                    });
+                    observer.unobserve(counterSection); // Only run once
+                }
+            });
+        }, { threshold: 0.5 }); // Trigger when 50% visible
 
-            <div class="mt-3 grid gap-4 md:grid-cols-[minmax(0,1.6fr)]">
-              <div>
-                <label for="corePackageSelect" class="text-xs font-medium text-slate-300">
-                  Select Package
-                </label>
-                <select
-                  id="corePackageSelect"
-                  class="mt-1 w-full rounded-xl border border-slate-700 bg-slate-950/60 px-3 py-2 text-sm text-slate-100 focus:border-brandPink focus:outline-none"
-                >
-                  <!-- Populated by JS -->
-                </select>
-              </div>
-            </div>
-          </div>
+        observer.observe(counterSection);
+        
+        // NEW: Before/After Slider Logic
+        const sliderContainer = document.getElementById('ba-slider-container');
+        if (sliderContainer) {
+            const slider = document.getElementById('ba-range-slider');
+            const afterImage = document.getElementById('ba-after-image');
+            const handle = document.getElementById('ba-handle');
 
-          <!-- Add-ons -->
-          <div class="mt-6 border-t border-slate-700 pt-5">
-            <h3 class="text-xs font-semibold uppercase tracking-[0.2em] text-slate-400">
-              Plans & Services
-            </h3>
-            <p class="mt-1 text-xs text-slate-400">
-              Layer in care plans, SEO, branding, e-commerce and AI so the quote matches what the client actually needs.
-            </p>
+            slider.addEventListener('input', (e) => {
+                const value = e.target.value;
+                afterImage.style.width = `${value}%`;
+                handle.style.left = `${value}%`;
+            });
+        }
 
-            <div id="addonsList" class="mt-4 grid gap-3 md:grid-cols-2">
-              <!-- Populated by JS -->
-            </div>
-          </div>
-        </div>
+        // Testimonial Carousel
+        const testimonials = document.querySelectorAll('.testimonial-item');
+        let currentTestimonial = 0;
 
-        <!-- Right: Summary -->
-        <div class="flex flex-col gap-4">
-          <div class="rounded-3xl bg-gradient-to-br from-brandPurple/40 via-brandCard to-brandPink/30 p-6 shadow-neon">
-            <h3 class="text-xs font-semibold uppercase tracking-[0.2em] text-slate-200">
-              Quote Summary
-            </h3>
+        function showTestimonial(index) {
+            testimonials.forEach((item, i) => {
+                item.classList.remove('active');
+                if (i === index) {
+                    item.classList.add('active');
+                }
+            });
+        }
 
-            <div class="mt-4 space-y-3 text-xs text-slate-200">
-              <p>
-                <span class="text-slate-400">Client:</span>
-                <span id="summaryClient" class="font-medium">–</span>
-              </p>
-              <p>
-                <span class="text-slate-400">Project:</span>
-                <span id="summaryProject" class="font-medium">–</span>
-              </p>
-              <p>
-                <span class="text-slate-400">Website Package:</span>
-                <span id="summaryPackage" class="font-medium">None selected</span>
-              </p>
-              <p>
-                <span class="text-slate-400">Plans & Add-ons:</span>
-                <span id="summaryAddons" class="font-medium">None selected</span>
-              </p>
-            </div>
+        setInterval(() => {
+            currentTestimonial = (currentTestimonial + 1) % testimonials.length;
+            showTestimonial(currentTestimonial);
+        }, 5000); // Change every 5 seconds
 
-            <div class="mt-5 grid gap-3 rounded-2xl bg-black/30 p-4 text-xs">
-              <div class="flex items-center justify-between">
-                <span class="text-slate-300">Initial (build + one-time)</span>
-                <span id="totalOneTime" class="font-display text-xl">$0</span>
-              </div>
-              <div class="flex items-center justify-between">
-                <span class="text-slate-300">Monthly (plans, SEO & AI)</span>
-                <span id="totalMonthly" class="font-display text-xl">$0</span>
-              </div>
-            </div>
-
-            <p class="mt-4 text-[11px] text-slate-200">
-              
-            </p>
-          </div>
-
-          <div class="rounded-3xl bg-brandCard/90 p-5 text-xs text-slate-300">
-            <p class="font-semibold text-slate-100">Built into the lullabyGBS process</p>
-            <p class="mt-2">
-              We use this same structure internally when scoping new work. It keeps projects transparent, 
-              avoids surprise line items, and makes it easy to grow the engagement over time.
-            </p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- STATS / CHART -->
-  <section id="pricing-chart" class="border-t border-slate-800/70 bg-brandBg py-14">
-    <div class="mx-auto max-w-6xl px-4">
-      <div class="mb-6 flex flex-wrap items-end justify-between gap-4">
-        <div>
-          <h2 class="font-display text-2xl sm:text-3xl">Initial Build Cost Snapshot</h2>
-          <p class="mt-2 max-w-xl text-sm text-slate-300">
-            A quick visual of your three core website tiers. Use this to position each option before you talk through care plans and automation.
-          </p>
-        </div>
-      </div>
-
-      <div class="rounded-3xl bg-brandCard/90 p-5 shadow-lg shadow-black/40 ring-1 ring-slate-800/70">
-        <canvas id="yearOneChart" height="120"></canvas>
-      </div>
-    </div>
-  </section>
-
-  <footer class="border-t border-slate-800/70 bg-brandBg py-6 text-center text-xs text-slate-500">
-    lullabyGBS · Websites, care plans & AI for teams that want a calmer, more effective digital presence.
-  </footer>
-
-  <!-- JS LOGIC -->
-  <script>
-    // ------- Website build packages (core) -------
-    const packages = [
-      {
-        id: 'WEB-STARTER',
-        name: 'Starter Site',
-        oneTime: 3000,
-        monthly: 0,
-      },
-      {
-        id: 'WEB-BIZPRO',
-        name: 'Business Pro',
-        oneTime: 4500,
-        monthly: 0,
-      },
-      {
-        id: 'WEB-ENTERPRISE',
-        name: 'Enterprise',
-        oneTime: 10000,
-        monthly: 0,
-      },
-    ];
-
-    // ------- Plans + services (add-ons) -------
-    const addons = [
-      // Monthly care / AI plans
-      {
-        id: 'PLAN-SECURE',
-        name: 'Secure Site Plan',
-        oneTime: 0,
-        monthly: 175,
-        description: 'Weekly backups, updates, security monitoring & firewall, plus 1 hour of updates. Includes AI Content Assistant.',
-      },
-      {
-        id: 'PLAN-GROWTH',
-        name: 'Growth Engine Plan',
-        oneTime: 0,
-        monthly: 400,
-        description: 'Daily backups, uptime monitoring, reports & seasonal promos. Includes AI quote-qualifier chatbot.',
-      },
-      {
-        id: 'PLAN-AHUB',
-        name: 'Automated Hub Plan',
-        oneTime: 0,
-        monthly: 750,
-        description: 'Real-time backups, staging, priority support & 5 hours of updates. Includes AI lead scoring & follow-ups.',
-      },
-      // One-time services
-      {
-        id: 'ADD-SEO-QUICK',
-        name: '“Quick-Start” SEO',
-        oneTime: 500,
-        monthly: 0,
-        description: 'Foundational SEO setup: keyword research, GA setup, sitemap submission & on-page optimization.',
-      },
-      {
-        id: 'ADD-SEO-ONGOING',
-        name: 'Ongoing SEO (from $400/mo)',
-        oneTime: 0,
-        monthly: 400,
-        description: 'Monthly SEO to grow rankings. Calculator uses starter tier ($400/mo); actual scope can scale higher.',
-      },
-      {
-        id: 'ADD-BRAND',
-        name: 'Logo & Brand Identity',
-        oneTime: 1200,
-        monthly: 0,
-        description: 'Logo design, color palette & font system to align your new site with a cohesive brand.',
-      },
-      {
-        id: 'ADD-ECOM',
-        name: 'Advanced E-commerce Setup',
-        oneTime: 1500,
-        monthly: 0,
-        description: 'Adds full e-commerce (payments, shipping rules, up to ~50 products) on top of Starter/Business Pro.',
-      },
-      {
-        id: 'ADD-COPY',
-        name: 'Copywriting Package (5 pages)',
-        oneTime: 900,
-        monthly: 0,
-        description: 'SEO-friendly copy for 5 key pages (e.g., Home, About, 3 Service pages).',
-      },
-    ];
-
-    const currency = (n) =>
-      n.toLocaleString('en-US', { style: 'currency', currency: 'USD', maximumFractionDigits: 0 });
-
-    // ------- Populate selects & checklist -------
-    const coreSelect = document.getElementById('corePackageSelect');
-    const addonsList = document.getElementById('addonsList');
-
-    packages.forEach((pkg, idx) => {
-      const opt = document.createElement('option');
-      opt.value = pkg.id;
-      opt.textContent = pkg.name + ` (${currency(pkg.oneTime)})`;
-      if (idx === 0) opt.selected = true;
-      coreSelect.appendChild(opt);
-    });
-
-    addons.forEach((addon) => {
-      const wrap = document.createElement('label');
-      wrap.className =
-        'flex cursor-pointer flex-col rounded-2xl border border-slate-700 bg-slate-950/60 px-3 py-3 text-xs hover:border-brandPink/70 transition';
-
-      wrap.innerHTML = `
-        <div class="flex items-start justify-between gap-2">
-          <div class="flex items-start gap-2">
-            <input
-              type="checkbox"
-              class="mt-1 h-4 w-4 rounded border-slate-600 bg-slate-900 text-brandPink focus:ring-brandPink"
-              value="${addon.id}"
-            />
-            <div>
-              <p class="font-semibold text-slate-100">${addon.name}</p>
-              <p class="mt-1 text-[11px] text-slate-400">${addon.description}</p>
-            </div>
-          </div>
-          <div class="text-right text-[11px] text-slate-300 whitespace-nowrap">
-            <p>${currency(addon.oneTime)} one-time</p>
-            <p>${currency(addon.monthly)} / month</p>
-          </div>
-        </div>
-      `;
-      addonsList.appendChild(wrap);
-    });
-
-    // ------- Summary + totals logic -------
-    const summaryClientEl = document.getElementById('summaryClient');
-    const summaryProjectEl = document.getElementById('summaryProject');
-    const summaryPackageEl = document.getElementById('summaryPackage');
-    const summaryAddonsEl = document.getElementById('summaryAddons');
-    const totalOneTimeEl = document.getElementById('totalOneTime');
-    const totalMonthlyEl = document.getElementById('totalMonthly');
-    const clientNameInput = document.getElementById('clientName');
-    const projectNameInput = document.getElementById('projectName');
-
-    function getSelectedCore() {
-      const id = coreSelect.value;
-      return packages.find((p) => p.id === id);
-    }
-
-    function getSelectedAddons() {
-      const checks = addonsList.querySelectorAll('input[type="checkbox"]');
-      const selectedIds = Array.from(checks)
-        .filter((c) => c.checked)
-        .map((c) => c.value);
-      return addons.filter((a) => selectedIds.includes(a.id));
-    }
-
-    function updateQuote() {
-      const core = getSelectedCore();
-      const selectedAddons = getSelectedAddons();
-
-      const coreOne = core ? core.oneTime : 0;
-      const coreMonth = core ? core.monthly : 0;
-
-      const addonsOne = selectedAddons.reduce((sum, a) => sum + a.oneTime, 0);
-      const addonsMonth = selectedAddons.reduce((sum, a) => sum + a.monthly, 0);
-
-      const totalOne = coreOne + addonsOne;
-      const totalMonth = coreMonth + addonsMonth;
-
-      // Update summary text
-      summaryClientEl.textContent = clientNameInput.value || 'Not specified';
-      summaryProjectEl.textContent = projectNameInput.value || 'Not specified';
-      summaryPackageEl.textContent = core ? core.name : 'None selected';
-      summaryAddonsEl.textContent =
-        selectedAddons.length > 0
-          ? selectedAddons.map((a) => a.name).join(', ')
-          : 'None selected';
-
-      // Update totals
-      totalOneTimeEl.textContent = currency(totalOne);
-      totalMonthlyEl.textContent = currency(totalMonth);
-    }
-
-    coreSelect.addEventListener('change', updateQuote);
-    addonsList.addEventListener('change', updateQuote);
-    clientNameInput.addEventListener('input', updateQuote);
-    projectNameInput.addEventListener('input', updateQuote);
-
-    // ------- Chart.js for initial build-only cost -------
-    const ctx = document.getElementById('yearOneChart').getContext('2d');
-    const labels = packages.map((p) => p.name);
-    const buildValues = packages.map((p) => p.oneTime); // build-only
-
-    new Chart(ctx, {
-      type: 'bar',
-      data: {
-        labels,
-        datasets: [
-          {
-            label: 'Initial Build Cost (USD)',
-            data: buildValues,
-          },
-        ],
-      },
-      options: {
-        responsive: true,
-        plugins: {
-          legend: {
-            labels: {
-              color: '#cbd5f5',
-            },
-          },
-          tooltip: {
-            callbacks: {
-              label: (ctx) => currency(ctx.parsed.y),
-            },
-          },
-        },
-        scales: {
-          x: {
-            ticks: { color: '#9ca3af', font: { size: 10 } },
-            grid: { color: 'rgba(148, 163, 184, 0.2)' },
-          },
-          y: {
-            ticks: {
-              color: '#9ca3af',
-              callback: (value) =>
-                value.toLocaleString('en-US', { maximumFractionDigits: 0 }),
-            },
-            grid: { color: 'rgba(148, 163, 184, 0.2)' },
-          },
-        },
-      },
-    });
-
-    // Initial state
-    updateQuote();
-  </script>
+    </script>
 </body>
 </html>
