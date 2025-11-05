@@ -632,7 +632,7 @@
         const addonsOne = selectedAddons.reduce((sum, a) => sum + a.oneTime, 0);
         const addonsMonth = selectedAddons.reduce((sum, a) => sum + a.monthly, 0);
 
-        const totalOne = coreOne + addonsOne;
+        const totalOne = coreOne + addonsOne + addonsMonth;
         const totalMonth = coreMonth + addonsMonth;
 
         // Initial website investment: ONLY one-time costs (build + one-time services)
