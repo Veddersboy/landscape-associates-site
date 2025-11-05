@@ -46,21 +46,24 @@
 </head>
 <body class="bg-brandBg text-slate-100 font-body">
 
-  <!-- BLACK FRIDAY BANNER -->
+  <!-- BLACK FRIDAY / HOLIDAY BANNER -->
   <div class="bg-gradient-to-r from-emerald-400 via-brandPink to-amber-400 text-slate-950">
     <div class="mx-auto flex max-w-6xl flex-col items-start gap-2 px-4 py-2 text-xs font-semibold sm:flex-row sm:items-center sm:justify-between sm:text-sm">
       <span class="flex items-center gap-2">
-        <span>🖤🎁</span>
-        <span>Black Friday Sale: lock in lullabyGBS website & care plan pricing until <strong>November 28th</strong>.</span>
+        <span>🖤🎄</span>
+        <span>Black Friday & Holiday Offer: lock in lullabyGBS website & care plan pricing until <strong>November 28th</strong>.</span>
       </span>
       <a
         href="#quote-tool"
         class="inline-flex items-center rounded-full border border-slate-900/40 bg-black/10 px-3 py-1 text-[11px] font-semibold uppercase tracking-wide hover:bg-black/20 sm:text-xs"
       >
-        Build my Black Friday quote →
+        Build my holiday quote →
       </a>
     </div>
   </div>
+
+  <!-- Gradient background overlay -->
+  <div class="pointer-events-none fixed inset-x-0 top-0 -z-10 h-[600px] bg-gradient-to-b from-brandPurple/50 via-brandBg to-brandBg blur-3xl opacity-70"></div>
 
   <!-- NAVBAR -->
   <header class="sticky top-0 z-30 border-b border-slate-800/80 bg-brandBg/80 backdrop-blur-xl">
@@ -84,9 +87,6 @@
       </a>
     </div>
   </header>
-
-  <!-- Gradient background overlay -->
-  <div class="pointer-events-none fixed inset-x-0 top-0 -z-10 h-[600px] bg-gradient-to-b from-brandPurple/50 via-brandBg to-brandBg blur-3xl opacity-70"></div>
 
   <!-- HERO -->
   <section class="mx-auto flex max-w-6xl flex-col gap-10 px-4 pb-16 pt-10 md:flex-row md:items-center md:pt-14">
@@ -114,7 +114,7 @@
         </span>
         <span class="inline-flex items-center gap-2 rounded-full bg-brandCard/80 px-3 py-1">
           <span class="h-1.5 w-1.5 rounded-full bg-brandPink"></span>
-          Black Friday offers live
+          Initial vs monthly clearly split
         </span>
       </div>
 
@@ -170,7 +170,7 @@
           <h2 class="font-display text-2xl sm:text-3xl">Website Builds & Monthly Plans</h2>
           <p class="mt-2 max-w-xl text-sm text-slate-300">
             Your core website is a one-time build. Care plans and ongoing SEO live on their own line,
-            so clients can clearly see build vs monthly — especially during Black Friday.
+            so clients can clearly see build vs monthly.
           </p>
         </div>
         <span class="rounded-full bg-brandCard/80 px-3 py-1 text-xs font-medium text-slate-300">
@@ -248,7 +248,7 @@
           </p>
         </article>
 
-        <!-- GROWTH ENGINE – HOLIDAY DEAL -->
+        <!-- GROWTH ENGINE – HOLIDAY DEAL LOOK -->
         <article class="relative flex flex-col rounded-3xl bg-gradient-to-br from-emerald-500/20 via-brandCard to-brandPink/25 p-5 shadow-neon ring-1 ring-emerald-400/80">
           <div class="mb-2 flex items-center justify-between">
             <div class="inline-flex items-center gap-1 rounded-full bg-emerald-500/20 px-2 py-1 text-[11px] font-semibold text-emerald-200">
@@ -258,17 +258,20 @@
               Most Popular
             </span>
           </div>
+          <div class="mb-1 inline-flex rounded-full bg-fuchsia-500/20 px-2 py-1 text-[11px] font-semibold text-fuchsia-200">
+            Plan • Growth Engine
+          </div>
           <h3 class="font-display text-lg">Growth Engine</h3>
           <p class="mt-2 text-xs text-slate-100">
             Daily backups, all Secure Site features, uptime monitoring, monthly analytics reports
-            & seasonal promo/CTA updates — perfect for holiday campaigns.
+            & seasonal promo/CTA updates — perfect for holiday campaigns and high-intent traffic.
           </p>
           <div class="mt-4 flex items-baseline gap-2">
             <span class="font-display text-2xl">$400</span>
             <span class="text-xs text-slate-100">/ month</span>
           </div>
           <p class="mt-1 text-[11px] text-emerald-200">
-            Includes AI quote-qualifier chatbot to pre-qualify leads 24/7. Featured holiday option for high-intent traffic.
+            Adds AI quote-qualifier chatbot to pre-qualify leads 24/7. Highlighted as our holiday promo plan.
           </p>
         </article>
 
@@ -286,7 +289,7 @@
             <span class="text-xs text-slate-200">/ month</span>
           </div>
           <p class="mt-1 text-[11px] text-emerald-200">
-            Includes AI lead scoring and automated follow-ups. Ideal for leaders doubling down on growth.
+            Includes AI lead scoring and automated follow-ups.
           </p>
         </article>
       </div>
@@ -305,7 +308,7 @@
           </p>
         </div>
         <p class="text-xs text-slate-400">
-          Perfect for Black Friday proposals — just plug in numbers and export.
+          All numbers are editable in code or via your backend later.
         </p>
       </div>
 
@@ -416,7 +419,7 @@
               </div>
               <div class="mt-1 flex items-center justify-between border-t border-white/20 pt-3">
                 <span class="text-[11px] text-slate-300">
-                  Approx Year-1 Website Investment (build + 10 months)
+                  Approx Initial Website Investment (excludes monthly)
                 </span>
                 <span id="approxYearOne" class="font-display text-xl text-emerald-300">$0</span>
               </div>
@@ -464,256 +467,244 @@
 
   <!-- JS LOGIC -->
   <script>
-    window.addEventListener('DOMContentLoaded', () => {
-      // ------- Website build packages (core) -------
-      const packages = [
-        {
-          id: 'WEB-STARTER',
-          name: 'Starter Site',
-          oneTime: 3000,
-          monthly: 0
-        },
-        {
-          id: 'WEB-BIZPRO',
-          name: 'Business Pro',
-          oneTime: 4500,
-          monthly: 0
-        },
-        {
-          id: 'WEB-ENTERPRISE',
-          name: 'Enterprise',
-          oneTime: 10000,
-          monthly: 0
-        }
-      ];
+    // ------- Website build packages (core) -------
+    const packages = [
+      {
+        id: 'WEB-STARTER',
+        name: 'Starter Site',
+        oneTime: 3000,
+        monthly: 0,
+      },
+      {
+        id: 'WEB-BIZPRO',
+        name: 'Business Pro',
+        oneTime: 4500,
+        monthly: 0,
+      },
+      {
+        id: 'WEB-ENTERPRISE',
+        name: 'Enterprise',
+        oneTime: 10000,
+        monthly: 0,
+      },
+    ];
 
-      // ------- Plans + services (add-ons) -------
-      const addons = [
-        // Monthly care / AI plans
-        {
-          id: 'PLAN-SECURE',
-          name: 'Secure Site Plan',
-          oneTime: 0,
-          monthly: 175,
-          description: 'Weekly backups, updates, security monitoring & firewall, plus 1 hour of updates. Includes AI Content Assistant.'
-        },
-        {
-          id: 'PLAN-GROWTH',
-          name: 'Growth Engine Plan',
-          oneTime: 0,
-          monthly: 400,
-          description: 'Daily backups, uptime monitoring, reports & seasonal promos. Includes AI quote-qualifier chatbot.'
-        },
-        {
-          id: 'PLAN-AHUB',
-          name: 'Automated Hub Plan',
-          oneTime: 0,
-          monthly: 750,
-          description: 'Real-time backups, staging, priority support & 5 hours of updates. Includes AI lead scoring & follow-ups.'
-        },
-        // One-time services
-        {
-          id: 'ADD-SEO-QUICK',
-          name: '“Quick-Start” SEO',
-          oneTime: 500,
-          monthly: 0,
-          description: 'Foundational SEO setup: keyword research, GA setup, sitemap submission & on-page optimization.'
-        },
-        {
-          id: 'ADD-SEO-ONGOING',
-          name: 'Ongoing SEO (from $400/mo)',
-          oneTime: 0,
-          monthly: 400,
-          description: 'Monthly SEO to grow rankings. Calculator uses starter tier ($400/mo); actual scope can scale higher.'
-        },
-        {
-          id: 'ADD-BRAND',
-          name: 'Logo & Brand Identity',
-          oneTime: 1200,
-          monthly: 0,
-          description: 'Logo design, color palette & font system to align your new site with a cohesive brand.'
-        },
-        {
-          id: 'ADD-ECOM',
-          name: 'Advanced E-commerce Setup',
-          oneTime: 1500,
-          monthly: 0,
-          description: 'Adds full e-commerce (payments, shipping rules, up to ~50 products) on top of Starter/Business Pro.'
-        },
-        {
-          id: 'ADD-COPY',
-          name: 'Copywriting Package (5 pages)',
-          oneTime: 900,
-          monthly: 0,
-          description: 'SEO-friendly copy for 5 key pages (e.g., Home, About, 3 Service pages).'
-        }
-      ];
+    // ------- Plans + services (add-ons) -------
+    const addons = [
+      // Monthly care / AI plans
+      {
+        id: 'PLAN-SECURE',
+        name: 'Secure Site Plan',
+        oneTime: 0,
+        monthly: 175,
+        description: 'Weekly backups, updates, security monitoring & firewall, plus 1 hour of updates. Includes AI Content Assistant.',
+      },
+      {
+        id: 'PLAN-GROWTH',
+        name: 'Growth Engine Plan',
+        oneTime: 0,
+        monthly: 400,
+        description: 'Daily backups, uptime monitoring, reports & seasonal promos. Includes AI quote-qualifier chatbot.',
+      },
+      {
+        id: 'PLAN-AHUB',
+        name: 'Automated Hub Plan',
+        oneTime: 0,
+        monthly: 750,
+        description: 'Real-time backups, staging, priority support & 5 hours of updates. Includes AI lead scoring & follow-ups.',
+      },
+      // One-time services
+      {
+        id: 'ADD-SEO-QUICK',
+        name: '“Quick-Start” SEO',
+        oneTime: 500,
+        monthly: 0,
+        description: 'Foundational SEO setup: keyword research, GA setup, sitemap submission & on-page optimization.',
+      },
+      {
+        id: 'ADD-SEO-ONGOING',
+        name: 'Ongoing SEO (from $400/mo)',
+        oneTime: 0,
+        monthly: 400,
+        description: 'Monthly SEO to grow rankings. Calculator uses starter tier ($400/mo); actual scope can scale higher.',
+      },
+      {
+        id: 'ADD-BRAND',
+        name: 'Logo & Brand Identity',
+        oneTime: 1200,
+        monthly: 0,
+        description: 'Logo design, color palette & font system to align your new site with a cohesive brand.',
+      },
+      {
+        id: 'ADD-ECOM',
+        name: 'Advanced E-commerce Setup',
+        oneTime: 1500,
+        monthly: 0,
+        description: 'Adds full e-commerce (payments, shipping rules, up to ~50 products) on top of Starter/Business Pro.',
+      },
+      {
+        id: 'ADD-COPY',
+        name: 'Copywriting Package (5 pages)',
+        oneTime: 900,
+        monthly: 0,
+        description: 'SEO-friendly copy for 5 key pages (e.g., Home, About, 3 Service pages).',
+      },
+    ];
 
-      const currency = (n) =>
-        n.toLocaleString('en-US', { style: 'currency', currency: 'USD', maximumFractionDigits: 0 });
+    const currency = (n) =>
+      n.toLocaleString('en-US', { style: 'currency', currency: 'USD', maximumFractionDigits: 0 });
 
-      // ------- Populate selects & checklist -------
-      const coreSelect = document.getElementById('corePackageSelect');
-      const addonsList = document.getElementById('addonsList');
+    // ------- Populate selects & checklist -------
+    const coreSelect = document.getElementById('corePackageSelect');
+    const addonsList = document.getElementById('addonsList');
 
-      if (!coreSelect || !addonsList) {
-        return;
-      }
+    packages.forEach((pkg, idx) => {
+      const opt = document.createElement('option');
+      opt.value = pkg.id;
+      opt.textContent = pkg.name + ` (${currency(pkg.oneTime)})`;
+      if (idx === 0) opt.selected = true;
+      coreSelect.appendChild(opt);
+    });
 
-      packages.forEach((pkg, idx) => {
-        const opt = document.createElement('option');
-        opt.value = pkg.id;
-        opt.textContent = pkg.name + ' (' + currency(pkg.oneTime) + ')';
-        if (idx === 0) opt.selected = true;
-        coreSelect.appendChild(opt);
-      });
+    addons.forEach((addon) => {
+      const wrap = document.createElement('label');
+      wrap.className =
+        'flex cursor-pointer flex-col rounded-2xl border border-slate-700 bg-slate-950/60 px-3 py-3 text-xs hover:border-brandPink/70 transition';
 
-      addons.forEach((addon) => {
-        const wrap = document.createElement('label');
-        wrap.className =
-          'flex cursor-pointer flex-col rounded-2xl border border-slate-700 bg-slate-950/60 px-3 py-3 text-xs hover:border-brandPink/70 transition';
-
-        wrap.innerHTML = `
-          <div class="flex items-start justify-between gap-2">
-            <div class="flex items-start gap-2">
-              <input
-                type="checkbox"
-                class="mt-1 h-4 w-4 rounded border-slate-600 bg-slate-900 text-brandPink focus:ring-brandPink"
-                value="${addon.id}"
-              />
-              <div>
-                <p class="font-semibold text-slate-100">${addon.name}</p>
-                <p class="mt-1 text-[11px] text-slate-400">${addon.description}</p>
-              </div>
-            </div>
-            <div class="text-right text-[11px] text-slate-300 whitespace-nowrap">
-              <p>${currency(addon.oneTime)} one-time</p>
-              <p>${currency(addon.monthly)} / month</p>
+      wrap.innerHTML = `
+        <div class="flex items-start justify-between gap-2">
+          <div class="flex items-start gap-2">
+            <input
+              type="checkbox"
+              class="mt-1 h-4 w-4 rounded border-slate-600 bg-slate-900 text-brandPink focus:ring-brandPink"
+              value="${addon.id}"
+            />
+            <div>
+              <p class="font-semibold text-slate-100">${addon.name}</p>
+              <p class="mt-1 text-[11px] text-slate-400">${addon.description}</p>
             </div>
           </div>
-        `;
-        addonsList.appendChild(wrap);
-      });
-
-      // ------- Calculator logic -------
-      const coreOneTimeEl = document.getElementById('coreOneTime');
-      const coreMonthlyEl = document.getElementById('coreMonthly');
-      const totalOneTimeEl = document.getElementById('totalOneTime');
-      const totalMonthlyEl = document.getElementById('totalMonthly');
-      const approxYearOneEl = document.getElementById('approxYearOne');
-
-      const summaryClientEl = document.getElementById('summaryClient');
-      const summaryProjectEl = document.getElementById('summaryProject');
-      const summaryPackageEl = document.getElementById('summaryPackage');
-      const summaryAddonsEl = document.getElementById('summaryAddons');
-      const clientNameInput = document.getElementById('clientName');
-      const projectNameInput = document.getElementById('projectName');
-
-      function getSelectedCore() {
-        const id = coreSelect.value;
-        return packages.find((p) => p.id === id) || null;
-      }
-
-      function getSelectedAddons() {
-        const checks = addonsList.querySelectorAll('input[type="checkbox"]');
-        const selectedIds = Array.from(checks)
-          .filter((c) => c.checked)
-          .map((c) => c.value);
-        return addons.filter((a) => selectedIds.includes(a.id));
-      }
-
-      function updateCalculator() {
-        const core = getSelectedCore();
-        const selectedAddons = getSelectedAddons();
-
-        const coreOne = core ? core.oneTime : 0;
-        const coreMonth = core ? core.monthly : 0;
-
-        const addonsOne = selectedAddons.reduce((sum, a) => sum + a.oneTime, 0);
-        const addonsMonth = selectedAddons.reduce((sum, a) => sum + a.monthly, 0);
-
-        // One-time and monthly subtotals
-        const totalOne = coreOne + addonsOne;
-        const totalMonth = coreMonth + addonsMonth;
-
-        // Year-1 total: initial one-time + 10 paid months (first 60 days free)
-        const yearOneTotal = totalOne + totalMonth * 10;
-
-        if (coreOneTimeEl) coreOneTimeEl.textContent = currency(coreOne);
-        if (coreMonthlyEl) coreMonthlyEl.textContent = currency(coreMonth);
-        if (totalOneTimeEl) totalOneTimeEl.textContent = currency(totalOne);
-        if (totalMonthlyEl) totalMonthlyEl.textContent = currency(totalMonth);
-        if (approxYearOneEl) approxYearOneEl.textContent = currency(yearOneTotal);
-
-        if (summaryClientEl) summaryClientEl.textContent = clientNameInput.value || 'Not specified';
-        if (summaryProjectEl) summaryProjectEl.textContent = projectNameInput.value || 'Not specified';
-        if (summaryPackageEl) summaryPackageEl.textContent = core ? core.name : 'None selected';
-        if (summaryAddonsEl) {
-          summaryAddonsEl.textContent =
-            selectedAddons.length > 0
-              ? selectedAddons.map((a) => a.name).join(', ')
-              : 'None selected';
-        }
-      }
-
-      coreSelect.addEventListener('change', updateCalculator);
-      addonsList.addEventListener('change', updateCalculator);
-      clientNameInput.addEventListener('input', updateCalculator);
-      projectNameInput.addEventListener('input', updateCalculator);
-
-      // ------- Chart.js for initial build-only cost -------
-      const canvas = document.getElementById('yearOneChart');
-      if (canvas && window.Chart) {
-        const ctx = canvas.getContext('2d');
-        const labels = packages.map((p) => p.name);
-        const buildValues = packages.map((p) => p.oneTime); // build-only
-
-        new Chart(ctx, {
-          type: 'bar',
-          data: {
-            labels: labels,
-            datasets: [
-              {
-                label: 'Initial Build Cost (USD)',
-                data: buildValues
-              }
-            ]
-          },
-          options: {
-            responsive: true,
-            plugins: {
-              legend: {
-                labels: {
-                  color: '#cbd5f5'
-                }
-              },
-              tooltip: {
-                callbacks: {
-                  label: (ctx) => currency(ctx.parsed.y)
-                }
-              }
-            },
-            scales: {
-              x: {
-                ticks: { color: '#9ca3af', font: { size: 10 } },
-                grid: { color: 'rgba(148, 163, 184, 0.2)' }
-              },
-              y: {
-                ticks: {
-                  color: '#9ca3af',
-                  callback: (value) =>
-                    value.toLocaleString('en-US', { maximumFractionDigits: 0 })
-                },
-                grid: { color: 'rgba(148, 163, 184, 0.2)' }
-              }
-            }
-          }
-        });
-      }
-
-      // Initial compute
-      updateCalculator();
+          <div class="text-right text-[11px] text-slate-300 whitespace-nowrap">
+            <p>${currency(addon.oneTime)} one-time</p>
+            <p>${currency(addon.monthly)} / month</p>
+          </div>
+        </div>
+      `;
+      addonsList.appendChild(wrap);
     });
+
+    // ------- Calculator logic -------
+    const coreOneTimeEl = document.getElementById('coreOneTime');
+    const coreMonthlyEl = document.getElementById('coreMonthly');
+    const totalOneTimeEl = document.getElementById('totalOneTime');
+    const totalMonthlyEl = document.getElementById('totalMonthly');
+    const approxYearOneEl = document.getElementById('approxYearOne');
+
+    const summaryClientEl = document.getElementById('summaryClient');
+    const summaryProjectEl = document.getElementById('summaryProject');
+    const summaryPackageEl = document.getElementById('summaryPackage');
+    const summaryAddonsEl = document.getElementById('summaryAddons');
+    const clientNameInput = document.getElementById('clientName');
+    const projectNameInput = document.getElementById('projectName');
+
+    function getSelectedCore() {
+      const id = coreSelect.value;
+      return packages.find((p) => p.id === id);
+    }
+
+    function getSelectedAddons() {
+      const checks = addonsList.querySelectorAll('input[type="checkbox"]');
+      const selectedIds = Array.from(checks)
+        .filter((c) => c.checked)
+        .map((c) => c.value);
+      return addons.filter((a) => selectedIds.includes(a.id));
+    }
+
+    function updateCalculator() {
+      const core = getSelectedCore();
+      const selectedAddons = getSelectedAddons();
+
+      const coreOne = core ? core.oneTime : 0;
+      const coreMonth = core ? core.monthly : 0;
+
+      const addonsOne = selectedAddons.reduce((sum, a) => sum + a.oneTime, 0);
+      const addonsMonth = selectedAddons.reduce((sum, a) => sum + a.monthly, 0);
+
+      const totalOne = coreOne + addonsOne;
+      const totalMonth = coreMonth + addonsMonth;
+
+      // Initial website investment: ONLY one-time costs (build + one-time services)
+      const initialInvestment = totalOne;
+
+      coreOneTimeEl.textContent = currency(coreOne);
+      coreMonthlyEl.textContent = currency(coreMonth);
+      totalOneTimeEl.textContent = currency(totalOne);
+      totalMonthlyEl.textContent = currency(totalMonth);
+      approxYearOneEl.textContent = currency(initialInvestment);
+
+      summaryClientEl.textContent = clientNameInput.value || 'Not specified';
+      summaryProjectEl.textContent = projectNameInput.value || 'Not specified';
+      summaryPackageEl.textContent = core ? core.name : 'None selected';
+      summaryAddonsEl.textContent =
+        selectedAddons.length > 0
+          ? selectedAddons.map((a) => a.name).join(', ')
+          : 'None selected';
+    }
+
+    coreSelect.addEventListener('change', updateCalculator);
+    addonsList.addEventListener('change', updateCalculator);
+    clientNameInput.addEventListener('input', updateCalculator);
+    projectNameInput.addEventListener('input', updateCalculator);
+
+    // ------- Chart.js for initial build-only cost -------
+    const ctx = document.getElementById('yearOneChart').getContext('2d');
+    const labels = packages.map((p) => p.name);
+    const buildValues = packages.map((p) => p.oneTime); // build-only
+
+    new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels,
+        datasets: [
+          {
+            label: 'Initial Build Cost (USD)',
+            data: buildValues,
+          },
+        ],
+      },
+      options: {
+        responsive: true,
+        plugins: {
+          legend: {
+            labels: {
+              color: '#cbd5f5',
+            },
+          },
+          tooltip: {
+            callbacks: {
+              label: (ctx) => currency(ctx.parsed.y),
+            },
+          },
+        },
+        scales: {
+          x: {
+            ticks: { color: '#9ca3af', font: { size: 10 } },
+            grid: { color: 'rgba(148, 163, 184, 0.2)' },
+          },
+          y: {
+            ticks: {
+              color: '#9ca3af',
+              callback: (value) =>
+                value.toLocaleString('en-US', { maximumFractionDigits: 0 }),
+            },
+            grid: { color: 'rgba(148, 163, 184, 0.2)' },
+          },
+        },
+      },
+    });
+
+    // Initial compute
+    updateCalculator();
   </script>
 </body>
 </html>
