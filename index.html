@@ -423,10 +423,10 @@
                 </span>
                 <span id="approxYearOne" class="font-display text-xl text-emerald-300">$0</span>
               </div>
-              <!-- NEW: initial + monthly total -->
+              <!-- Year-1 including 10 paid months -->
               <div class="flex items-center justify-between">
                 <span class="text-[11px] text-slate-300">
-                  Approx Year-1 Total (initial + 12 × monthly)
+                  Approx Year-1 Total (initial + 10 × monthly, first 60 days free)
                 </span>
                 <span id="approxWithMonthly" class="font-display text-xl text-sky-300">$0</span>
               </div>
@@ -644,8 +644,8 @@
       // Initial website investment: ONLY one-time costs (build + one-time services)
       const initialInvestment = totalOne;
 
-      // Year-1 total: initial + 12 × monthly
-      const yearOneTotal = initialInvestment + totalMonth * 12;
+      // Year-1 total: initial + 10 paid months (first 60 days free)
+      const yearOneTotal = initialInvestment + totalMonth * 10;
 
       coreOneTimeEl.textContent = currency(coreOne);
       coreMonthlyEl.textContent = currency(coreMonth);
